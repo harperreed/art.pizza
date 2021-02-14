@@ -1,9 +1,12 @@
+/* eslint-disable no-console */
 // ---------------------------------------------------------------------------
 // [START functionsimport]
 
 /* eslint-disable no-unused-vars */
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+
+const helper = require('../helper');
 
 try {
   admin.initializeApp(functions.config().firebase);
@@ -30,7 +33,22 @@ try {
 // [START functions]
 
 module.exports = functions.https.onRequest(async (request, response) => {
-  response.send('asset');
+  // router.route(urls, path, request, response);
+  const { param1, param2 } = helper.parseUrl(request.url);
+
+  let responseObject;
+
+  if (param2) {
+    const asset = await helper.getAsset(param1, param2);
+    console.log(asset);
+    responseObject = asset;
+  } else {
+    responseObject = 'not an address';
+  }
+  response.setHeader('Content-Type', 'application/json');
+  response.set('Cache-Control', 'public, max-age=1800, s-maxage=3600');
+  response.send(JSON.stringify(responseObject));
+  response.end();
 });
 
 exports = module.exports;

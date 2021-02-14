@@ -1,1 +1,22 @@
-../../.vscode/extensions.json
+{
+  "recommendations": [
+    // ESLint - Integrates ESLint JavaScript into VS Code.
+    "dbaeumer.vscode-eslint",
+    // Disable eslint rule - Disable eslint rule with one click.
+    "wooodhead.disable-eslint-rule",
+    // eslint-disable-snippets - Simple snippets for disable eslint rules
+    "drknoxy.eslint-disable-snippets",
+    // Vue - Syntax highlight for Vue.js
+    "jcbuisson.vue",
+    // stylelint - Modern CSS/SCSS/Less linter
+    "stylelint.vscode-stylelint",
+    // EditorConfig for VS Code - EditorConfig Support for Visual Studio Code
+    // Not sure if this is needed or recommended,
+    // but .editorconfig file is still included in the scaffolded project...
+    "editorconfig.editorconfig",
+    // DotENV - Support for dotenv file syntax.
+    "mikestead.dotenv",
+    // Peacock is used to colorize by workspace. Handy so you know which workspace you're in.
+    "johnpapa.vscode-peacock",
+  ]
+}
