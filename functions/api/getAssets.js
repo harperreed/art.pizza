@@ -33,7 +33,6 @@ try {
 // [START functions]
 
 module.exports = functions.https.onRequest(async (request, response) => {
-  // router.route(urls, path, request, response);
   const { ethAddress } = helper.parseUrl(request.url);
 
   let responseObject;

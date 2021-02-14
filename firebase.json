@@ -18,8 +18,8 @@
       "**/node_modules/**"
     ],
     "rewrites": [
-      { "source": "/assets", "function": "getAssets" },
-      { "source": "/asset", "function": "getAsset" },
+      { "source": "/api/assets/**", "function": "getAssets" },
+      { "source": "/api/asset/**", "function": "getAsset" },
       {
         "source": "**",
         "destination": "/index.html"

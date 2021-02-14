@@ -33,6 +33,7 @@ helper.prototype.db = admin.firestore();
  */
 helper.prototype.parseUrl = function (url) {
   const parts = url.split('/');
+
   let keybase = 1;
 
   if (parts[1] === 'api') {
