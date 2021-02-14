@@ -4,13 +4,23 @@
         <nav class="level">
             <div class="level-left">
                 <div class="level-item">
-                    <span class="icon">
+                    <router-link :to="{ name: 'home' }">
                         <b-icon icon="twitter" size="is-small">
                         </b-icon>
-                    </span> &emsp;
-                    <span class="icon">
-                        🥺
-                    </span> &emsp;
+                    </router-link>
+                    &emsp;
+                    <router-link :to="{ name: 'home' }">
+                        <span class="icon">
+                            🥺
+                        </span>
+                    </router-link>
+                    &emsp;
+                    <router-link :to="{ name: 'home' }">
+                        <span class="icon">
+                            🍕
+                        </span>
+                    </router-link>
+                    &emsp;
                 </div>
             </div>
             <div class="level-right">

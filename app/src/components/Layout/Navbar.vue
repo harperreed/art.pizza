@@ -4,7 +4,7 @@
         <div class="container">
             <div class="navbar-brand">
                 <a class="navbar-item title" href="../">
-                    🖼️⚈🍕
+                    🖼️&nbsp;⚈&nbsp;🍕
                 </a>
                 <span class="navbar-burger burger" data-target="navbarMenu">
                     <span></span>
@@ -14,15 +14,18 @@
             </div>
             <div id="navbarMenu" class="navbar-menu">
                 <div class="navbar-end">
-                    <a class="navbar-item is-active">Home</a>
+                    <b-navbar-item tag="router-link" :to="{ name: 'home' }">
+                        🏠 Home
+                    </b-navbar-item>
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">Account</a>
                         <div class="navbar-dropdown">
-                            <a class="navbar-item">Home</a>
-                            <a class="navbar-item">Profile</a>
-                            <a class="navbar-item">Settings</a>
+                            <b-navbar-item tag="router-link" :to="{ name: 'home' }">🏠 Home</b-navbar-item>
+                            <b-navbar-item tag="router-link" :to="{ name: 'profile' }">🧑‍🎤 Profile</b-navbar-item>
+                            <b-navbar-item tag="router-link" :to="{ name: 'settings' }">⚙️ Settings</b-navbar-item>
+                            <b-navbar-item tag="router-link" :to="{ name: 'home' }">🍕 Pizza</b-navbar-item>
                             <hr class="navbar-divider">
-                            <div class="navbar-item">Logout</div>
+                            <b-navbar-item tag="router-link" :to="{ name: 'home' }">🔚 Logout</b-navbar-item>
                         </div>
                     </div>
                 </div>
