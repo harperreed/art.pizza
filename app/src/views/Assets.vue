@@ -26,9 +26,10 @@
 
 
 <script>
+  const axios = require('axios').default;
   import BaseLayout from '@/components/Layout/BaseLayout.vue';
 
-  import assets from '@/assets.json'
+
 
 
   export default {
@@ -37,8 +38,22 @@
     },
     data: function () {
       return {
-        assets: assets.assets
+        assets: []
       };
+    },
+    async mounted() {
+      this.getAssets();
+    },
+    methods: {
+      async getAssets() {
+        const {
+          ethAddress
+        } = this.$route.params;
+        const assetsUrl = `/api/assets/${ethAddress}`;
+        console.log(assetsUrl)
+        const resp = await axios.get(assetsUrl);
+        console.log(resp);
+      }
     }
 
 
