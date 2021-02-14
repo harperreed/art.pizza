@@ -27,4 +27,19 @@
 
 <style>
 
+  /* Card start*/
+  .card {
+    overflow: hidden;
+    background: ghostwhite;
+    color: var(--bg);
+  }
+
+  .card.large {
+    border-radius: 5px;
+  }
+
+  .title.no-padding {
+    margin-bottom: 0 !important;
+  }
+
 </style>
