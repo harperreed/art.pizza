@@ -5,6 +5,7 @@ export default {
     return {
       ensName: '',
       ethAddress: '',
+      ethBalance: '',
       ensData: {},
     };
   },
@@ -13,6 +14,7 @@ export default {
       if (!this.ensName) {
         this.ensName = await this.ensLookup(address);
       }
+      this.ethBalance = await this.getBalance(address);
     },
     async ensName(name) {
       this.ensData = await this.getEnsData(name);
@@ -55,6 +57,21 @@ export default {
         console.log(error);
       }
       return '';
+    },
+    async getBalance(ethAddress) {
+      console.log('yeaaa');
+      const balanceUrl = `/api/getBalance/${ethAddress}`;
+      console.log(balanceUrl);
+      console.log(balanceUrl);
+      try {
+        const balanceResponse = await axios.get(balanceUrl);
+        console.log(balanceResponse);
+        const ethBalance = balanceResponse.data;
+        return ethBalance;
+      } catch (error) {
+        console.log(error);
+      }
+      return 0;
     },
   },
 };

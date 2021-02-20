@@ -3,25 +3,27 @@ const axios = require('axios').default;
 export default {
   data() {
     return {
-      balance: 0,
+      ethBalance: '',
     };
   },
   watch: {
     async ethAddress(address) {
-      if (!this.balance) {
-        this.balance = await this.getBalance(address);
-      }
+      console.log('asd');
+      this.ethBalance = await this.getBalance(address);
     },
 
   },
   methods: {
     async getBalance(ethAddress) {
+      console.log('yeaaa');
       const balanceUrl = `/api/getBalance/${ethAddress}`;
+      console.log(balanceUrl);
+      console.log(balanceUrl);
       try {
         const balanceResponse = await axios.get(balanceUrl);
         console.log(balanceResponse);
-        const balance = balanceResponse.data;
-        return balance;
+        const ethBalance = balanceResponse.data;
+        return ethBalance;
       } catch (error) {
         console.log(error);
       }

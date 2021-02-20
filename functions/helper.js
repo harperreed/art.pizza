@@ -177,6 +177,24 @@ helper.prototype.ensGetData = async function (ensName) {
   return null;
 };
 
+/**
+ * resolves and ens name
+ *
+ * @function getEthBalance
+ * @param {string} ethAddress the given HEX address of the contract
+ * @returns {string} amount
+ */
+helper.prototype.getEthBalance = async function (ethAddress) {
+  try {
+    const balance = await this.provider.getBalance(ethAddress);
+
+    return ethers.utils.formatEther(balance);
+  } catch (error) {
+    console.log(error);
+  }
+  return null;
+};
+
 // [End Action helpers]
 
 // ---------------------------------------------------------------------------

@@ -7,6 +7,7 @@
       :ens-data="ensData"
       :ens-name="ensName"
       :eth-address="ethAddress"
+      :eth-balance="ethBalance"
     />
     <div v-if="assets">
       <masonry
@@ -66,21 +67,30 @@ export default {
   },
 
   async created() {
-    const { ethAddress } = this.$route.params;
-    if (ethAddress.includes('eth')) {
+    console.log('Asd');
+    console.log(this.$route.params);
+    const { ethRoute } = this.$route.params;
+    console.log(ethRoute);
+    let ethAddress;
+    if (ethRoute.includes('eth')) {
       console.log('probably a name');
-      this.ensName = ethAddress;
-      this.ethAddress = await this.ensResolve(ethAddress);
+      this.ensName = ethRoute;
+      ethAddress = await this.ensResolve(ethRoute);
     } else {
-      this.ethAddress = ethAddress;
+      ethAddress = ethRoute;
     }
-
-    this.getAssets(this.ethAddress);
+    if (ethAddress) {
+      this.ethAddress = ethAddress;
+      this.getAssets(this.ethAddress);
+    } else {
+      console.log('nope');
+      this.$router.push('/');
+    }
   },
 
   title() {
-    if (this.ethAddress) {
-      return `NFTs for ${this.ethAddress}`;
+    if ('ethRoute' in this.$route.params) {
+      return `NFTs for ${this.$route.params.ethRoute}`;
     }
 
     return 'NFTs';

@@ -28,13 +28,13 @@ const routes = [
     component: Main,
   },
   {
-    path: '/assets/:ethAddress',
+    path: '/:ethRoute',
     name: 'Assets',
     component: Assets,
     // beforeEnter: AuthGuard,
   },
   {
-    path: '/asset/:contractAddress/:tokenId',
+    path: '/contract/:contractAddress/:tokenId',
     name: 'Asset',
     component: Asset,
     // beforeEnter: AuthGuard,

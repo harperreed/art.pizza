@@ -28,6 +28,7 @@
                 /></a> {{ ethAddress }}
 
             </small> <br>
+            {{ ethBalance }} Ether
           </p>
         </div>
         <nav
@@ -114,13 +115,12 @@
 
 <script>
 import makeBlockie from 'ethereum-blockies-base64';
-import eth from '@/mixins/nfts';
 
 export default {
   components: {
 
   },
-  mixins: [eth],
+
   props: {
     ensData: {
       type: Object,
@@ -131,6 +131,10 @@ export default {
       default: '',
     },
     ensName: {
+      type: String,
+      default: '',
+    },
+    ethBalance: {
       type: String,
       default: '',
     },

@@ -23,6 +23,7 @@
       { "source": "/api/ensResolve/**", "function": "ensResolve" },
       { "source": "/api/ensLookup/**", "function": "ensLookup" },
       { "source": "/api/ensGetData/**", "function": "ensGetData" },
+      { "source": "/api/getBalance/**", "function": "getBalance" },
       {
         "source": "**",
         "destination": "/index.html"
