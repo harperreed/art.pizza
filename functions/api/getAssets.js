@@ -9,7 +9,7 @@ const admin = require('firebase-admin');
 const helper = require('../helper');
 
 try {
-  admin.initializeApp(functions.config().firebase);
+    admin.initializeApp(functions.config().firebase);
 } catch (e) {
   // You do that because the admin SDK can only be initialized once.
 }

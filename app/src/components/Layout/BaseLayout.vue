@@ -20,35 +20,33 @@
       </div>
     </slot>
   </section>
-
 </template>
 
 <script>
-  import {
-    mapGetters
-  } from 'vuex';
-  import Navbar from '@/components/Layout/Navbar.vue'
-  import Footer from '@/components/Layout/Footer.vue'
+import {
+  mapGetters,
+} from 'vuex';
+import Navbar from '@/components/Layout/Navbar.vue';
+import Footer from '@/components/Layout/Footer.vue';
 
+export default {
+  components: {
+    Navbar,
+    Footer,
+  },
+  props: {
+    title: {
+      type: String,
+      default: '',
+    },
+  },
+  computed: {
+    ...mapGetters(['splashy']),
+  },
+  created() {
 
-  export default {
-    components: {
-      Navbar,
-      Footer
-    },
-    props: {
-      title: {
-        type: String,
-        default: '',
-      },
-    },
-    computed: {
-      ...mapGetters(['splashy']),
-    },
-    created() {
-
-    },
-  };
+  },
+};
 </script>
 <style>
   :root {
@@ -74,13 +72,11 @@
     border-radius: 15px;
   }
 
-
   .menu {
     padding-top: .5rem;
     padding-left: 2rem;
     padding-right: 2rem;
   }
-
 
   .body,
   .left,

@@ -1,4 +1,3 @@
-
 export default {
   state: {
 
@@ -7,7 +6,6 @@ export default {
 
   },
   actions: {
-
 
   },
   getters: {

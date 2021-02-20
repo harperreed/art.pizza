@@ -1,6 +1,5 @@
 <template>
   <BaseLayout>
-
     <p class="block">
       This page is not found. maybe it has been ejected into space?
     </p>
@@ -8,17 +7,16 @@
 </template>
 
 <script>
-  import BaseLayout from '@/components/Layout/BaseLayout.vue';
+import BaseLayout from '@/components/Layout/BaseLayout.vue';
 
-  export default {
-    components: {
-      BaseLayout,
-    },
-    mounted() {
-      this.$store.dispatch('sendAnalyticsPage', 'notFound');
-    },
-  };
+export default {
+  components: {
+    BaseLayout,
+  },
+  mounted() {
+    this.$store.dispatch('sendAnalyticsPage', 'notFound');
+  },
+};
 </script>
 
-<style>
-</style>
+<style></style>

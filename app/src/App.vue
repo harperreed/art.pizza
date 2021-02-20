@@ -7,6 +7,7 @@
 
 export default {
   name: 'App',
+  title: 'welcome',
   components: {
 
   },
