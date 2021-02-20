@@ -22,7 +22,7 @@
       { "source": "/api/asset/**", "function": "getAsset" },
       { "source": "/api/ensResolve/**", "function": "ensResolve" },
       { "source": "/api/ensLookup/**", "function": "ensLookup" },
-      { "source": "/api/ensGetData/**", "function": "ensGetdata" },
+      { "source": "/api/ensGetData/**", "function": "ensGetData" },
       {
         "source": "**",
         "destination": "/index.html"

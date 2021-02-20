@@ -1,35 +1,23 @@
 <template>
   <BaseLayout>
     <h1 class="title">
-      {{ ensName }}
+      Assets for <strong>{{ niceName }}</strong>
     </h1>
+    <AddressBox
+      :ens-data="ensData"
+      :ens-name="ensName"
+      :eth-address="ethAddress"
+    />
     <div v-if="assets">
       <masonry
-        :cols="{default: 4, 1000: 3, 700: 2, 400: 1}"
+        :cols="{default: 3, 1000: 3, 700: 2, 400: 1}"
         :gutter="{default: '30px', 700: '15px'}"
       >
         <div
           v-for="card in assets"
           :key="card.id"
         >
-          <div class="card large">
-            <div class="card-image">
-              <figure class="image">
-                <img
-                  :src="card.image_url"
-                  alt="Image"
-                >
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="content">
-                {{ card.description }}
-                <div class="background-icon">
-                  <span class="icon-twitter" />
-                </div>
-              </div>
-            </div>
-          </div>
+          <AssetCard :asset="card" />
         </div>
       </masonry>
     </div>
@@ -44,34 +32,37 @@
 
 <script>
 import BaseLayout from '@/components/Layout/BaseLayout.vue';
+import AssetCard from '@/components/Utils/AssetCard.vue';
+import AddressBox from '@/components/Utils/AddressBox.vue';
 import ens from '@/mixins/ens';
-
-const axios = require('axios').default;
-
-const assetsJson = require('@/assets.json');
+import nfts from '@/mixins/nfts';
 
 export default {
   components: {
     BaseLayout,
+    AddressBox,
+    AssetCard,
   },
 
-  mixins: [ens],
+  mixins: [ens, nfts],
   data() {
     return {
       assets: undefined,
-      ensName: '',
-      ethAddress: '',
+
     };
   },
   computed: {
-
-  },
-  watch: {
-    async ethAddress(address) {
-      if (!this.ensName) {
-        this.ensName = await this.ensLookup(address);
+    niceName() {
+      if (this.ensName) {
+        return this.ensName;
       }
+      console.log(this.ethAddress);
+      const length = 10;
+      const part1 = this.ethAddress.substring(0, length);
+      const part2 = this.ethAddress.substring(this.ethAddress.length - length, this.ethAddress.length);
+      return `${part1}...${part2}`;
     },
+
   },
 
   async created() {
@@ -79,26 +70,14 @@ export default {
     if (ethAddress.includes('eth')) {
       console.log('probably a name');
       this.ensName = ethAddress;
-      this.ethAddress = await this.addressLookup(ethAddress);
+      this.ethAddress = await this.ensResolve(ethAddress);
     } else {
       this.ethAddress = ethAddress;
     }
 
-    this.getAssets();
+    this.getAssets(this.ethAddress);
   },
-  methods: {
-    async getAssets() {
-      const assetsUrl = `/api/assets/${this.ethAddress}`;
-      try {
-        const assetsResponse = await axios.get(assetsUrl);
-        this.assets = assetsResponse.data;
-      } catch (error) {
-        this.assets = assetsJson.assets;
-        console.log(error);
-      }
-    },
 
-  },
   title() {
     if (this.ethAddress) {
       return `NFTs for ${this.ethAddress}`;
@@ -112,9 +91,8 @@ export default {
 <style>
 /* Card start*/
 .card {
-  overflow: hidden;
-  background: ghostwhite;
-  color: var(--bg);
+
+  margin-bottom: 30px;
 }
 
 .card.large {
