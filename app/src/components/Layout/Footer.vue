@@ -17,7 +17,7 @@
             </span>
           </router-link>
                     &emsp;
-          <router-link :to="{ name: 'home' }">
+          <router-link :to="{ name: 'Assets', params: {ethRoute: 'harper.eth'} }">
             <span class="icon">
               🍕
             </span>
