@@ -34,15 +34,15 @@
                 /></a> {{ ethAddress }}
 
             </small> <br>
-          </p><div v-if="ethBalance">
-            {{ ethBalance }} Ether
-          </div>
-          <div v-else>
+            <span v-if="ethBalance">
+              {{ ethBalance }} Ether
+            </span>
+
             <b-skeleton
+              v-else
               width="20%"
               animated="true"
             />
-          </div>
           </p>
         </div>
         <nav
