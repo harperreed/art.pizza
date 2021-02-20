@@ -4,9 +4,15 @@
       <div class="media-left">
         <figure class="image is-64x64">
           <img
+            v-if="addressAvatar"
             :src="addressAvatar"
             alt="Image"
           >
+          <b-skeleton
+            v-else
+            width="64px"
+            height="64px"
+          />
         </figure>
       </div>
       <div class="media-content">
@@ -28,7 +34,15 @@
                 /></a> {{ ethAddress }}
 
             </small> <br>
+          </p><div v-if="ethBalance">
             {{ ethBalance }} Ether
+          </div>
+          <div v-else>
+            <b-skeleton
+              width="20%"
+              animated="true"
+            />
+          </div>
           </p>
         </div>
         <nav
