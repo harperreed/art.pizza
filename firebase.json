@@ -20,6 +20,9 @@
     "rewrites": [
       { "source": "/api/assets/**", "function": "getAssets" },
       { "source": "/api/asset/**", "function": "getAsset" },
+      { "source": "/api/ensResolve/**", "function": "ensResolve" },
+      { "source": "/api/ensLookup/**", "function": "ensLookup" },
+      { "source": "/api/ensGetdata/**", "function": "ensGetdata" },
       {
         "source": "**",
         "destination": "/index.html"
