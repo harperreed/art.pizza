@@ -48,6 +48,7 @@ export default {
   components: {
     BaseLayout,
   },
+
   mixins: [ens],
   data() {
     return {
@@ -65,7 +66,7 @@ export default {
     },
   },
 
-  async mounted() {
+  async created() {
     const { ethAddress } = this.$route.params;
     this.ethAddress = ethAddress;
     this.getAssets();
@@ -77,6 +78,9 @@ export default {
       this.assets = assetsResponse.data;
     },
 
+  },
+  title() {
+    return this.ensName;
   },
 };
 </script>
