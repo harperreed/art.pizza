@@ -53,8 +53,8 @@ export default {
   data() {
     return {
       assets: undefined,
-      ensName: undefined,
-      ethAddress: undefined,
+      ensName: '',
+      ethAddress: '',
     };
   },
   computed: {
@@ -80,7 +80,11 @@ export default {
 
   },
   title() {
-    return this.ensName;
+    if (this.ethAddress) {
+      return `NFTs for ${this.ethAddress}`;
+    }
+
+    return 'NFTs';
   },
 };
 </script>

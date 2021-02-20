@@ -4,7 +4,6 @@
 
 <script>
 
-
 export default {
   name: 'App',
   title: 'welcome',
@@ -16,7 +15,7 @@ export default {
       return this.$route.fullPath.slice(0, this.$route.fullPath.indexOf('#')).toString();
     },
   },
-}
+};
 </script>
 
 <style>

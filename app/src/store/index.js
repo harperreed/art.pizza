@@ -24,7 +24,7 @@ const persistentConfig = {
 
 const vuexLocal = createPersistedState(persistentConfig);
 
-
+// eslint-disable-next-line import/prefer-default-export
 export const store = new Vuex.Store({
   plugins: [vuexLocal],
   mutations: {
