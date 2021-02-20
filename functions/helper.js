@@ -9,7 +9,7 @@
 
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-const web3 = require('web3');
+const ethers = require('ethers');
 const axios = require('axios').default;
 
 try {
@@ -19,6 +19,8 @@ try {
 } // You do that because the admin SDK can only be initialized once.
 
 const helper = function () {};
+
+helper.prototype.provider = new ethers.providers.CloudflareProvider();
 
 helper.prototype.db = admin.firestore();
 
@@ -66,7 +68,7 @@ helper.prototype.parseUrl = function (url) {
  * @returns {boolean} yay
  */
 helper.prototype.isAddress = function (ethAddress) {
-  return web3.utils.isAddress(ethAddress);
+  return ethers.utils.isAddress(ethAddress);
 };
 
 /**
@@ -108,6 +110,71 @@ helper.prototype.getAsset = async function (contractAddress, tokenId) {
   } catch (error) {
     return {};
   }
+};
+
+/**
+ * resolves and ens name
+ *
+ * @function ensResolve
+ * @param {string} ethAddress the given HEX address of the contract
+ * @returns {string} ensName
+ */
+helper.prototype.ensLookup = async function (ethAddress) {
+  try {
+    const name = await this.provider.lookupAddress(ethAddress);
+    return name;
+  } catch (error) {
+    console.log(error);
+  }
+  return '';
+};
+
+/**
+ * resolves and ens name
+ *
+ * @function ensResolve
+ * @param {string} ensName the given HEX address of the contract
+ * @returns {string} address
+ */
+helper.prototype.ensResolve = async function (ensName) {
+  try {
+    const address = await this.provider.resolveName(ensName);
+    console.log(address);
+    return address;
+  } catch (error) {
+    console.log(error);
+  }
+  return '';
+};
+
+/**
+ * resolves and ens name
+ *
+ * @function ensResolve
+ * @param {string} ensName the given HEX address of the contract
+ * @returns {string} address
+ */
+helper.prototype.ensGetData = async function (ensName) {
+  const records = ['avatar', 'email', 'url', 'vnd.twitter', 'vnd.github'];
+  const data = {};
+  try {
+    const resolver = await this.provider.getResolver(ensName);
+
+    if (resolver) {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const key of records) {
+        // eslint-disable-next-line no-await-in-loop
+        const result = await resolver.getText(key);
+        if (result) {
+          data[key] = result;
+        }
+      }
+      return data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return null;
 };
 
 // [End Action helpers]
