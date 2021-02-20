@@ -12,5 +12,14 @@ export default {
       }
       return ethAddress;
     },
+    async addressLookup(ensName) {
+      const provider = new ethers.providers.CloudflareProvider();
+      const address = await provider.resolveName(ensName);
+      console.log(address);
+      if (address) {
+        return address;
+      }
+      return '';
+    },
   },
 };
