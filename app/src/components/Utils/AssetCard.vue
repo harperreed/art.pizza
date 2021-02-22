@@ -1,40 +1,43 @@
 <template>
   <div class="card large">
     <div class="card-image">
-      <figure class="image">
-        <img
-          :src="asset.image_url"
-          alt="Image"
-        >
-      </figure>
+      <router-link :to="{ name: 'Asset', params: {contractAddress:asset.asset_contract.address, tokenId:asset.token_id}}">
+        <figure class="image">
+          <img
+            :src="asset.image_url"
+            alt="Image"
+          >
+        </figure>
+      </router-link>
     </div>
     <div class="card-content">
       <div class="content">
         {{ description }}
-        <div class="background-icon">
-          <a
+        <router-link
+          :to="{ name: 'Asset', params: {contractAddress:asset.asset_contract.address, tokenId:asset.token_id}}"
+          aria-label="reply"
 
-            aria-label="reply"
+          target="_blank"
+        >
+          <b-icon
+            icon="currency-eth"
+            size="is-small"
+          />
+        </router-link>
+        <a
 
-            target="_blank"
-          >
-            <b-icon
-              icon="currency-eth"
-              size="is-small"
-            /></a>
-          <a
+          aria-label="reply"
 
-            aria-label="reply"
-
-            target="_blank"
-          >
-            <b-icon
-              icon="currency-eth"
-              size="is-small"
-            /></a>
-        </div>
+          target="_blank"
+        >
+          <b-icon
+            icon="currency-eth"
+            size="is-small"
+          /></a>
+        </router-link>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -54,10 +57,18 @@ export default {
   computed: {
     description() {
       const length = 50;
-      if (this.asset.description.length > length) {
-        return `${this.asset.description.substring(0, length)}...`;
+
+      if ('description' in this.asset) {
+        if (this.asset.description == null) {
+          return '';
+        }
+        if (this.asset.description.length > length) {
+          return `${this.asset.description.substring(0, length)}...`;
+        }
+        return this.asset.description;
       }
-      return this.asset.description;
+
+      return '';
     },
 
   },

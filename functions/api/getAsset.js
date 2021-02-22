@@ -35,6 +35,8 @@ try {
 module.exports = functions.https.onRequest(async (request, response) => {
   // router.route(urls, path, request, response);
   const { param1, param2 } = helper.parseUrl(request.url);
+  console.log(param1);
+  console.log(param2);
 
   let responseObject;
 

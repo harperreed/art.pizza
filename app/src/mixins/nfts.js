@@ -15,5 +15,16 @@ export default {
         console.log(error);
       }
     },
+    async getAsset(contractAddress, tokenId) {
+      const assetUrl = `/api/asset/${contractAddress}/${tokenId}`;
+      console.log(assetUrl);
+      try {
+        const assetResponse = await axios.get(assetUrl);
+        return assetResponse.data;
+      } catch (error) {
+        console.log(error);
+        return {};
+      }
+    },
   },
 };

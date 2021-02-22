@@ -23,7 +23,6 @@
             <small>
               <a
                 v-if="addressEtherscan"
-
                 aria-label="reply"
                 :href="addressEtherscan"
                 target="_blank"
@@ -31,17 +30,16 @@
                 <b-icon
                   icon="currency-eth"
                   size="is-small"
-                /></a> {{ ethAddress }}
-
-            </small> <br>
-            <span v-if="ethBalance">
-              {{ ethBalance }} Ether
-            </span>
+                /></a>
+              {{ ethAddress }}
+            </small>
+            <br>
+            <span v-if="ethBalance"> {{ ethBalance }} Ether </span>
 
             <b-skeleton
               v-else
               width="20%"
-              animated="true"
+              :animated="true"
             />
           </p>
         </div>
@@ -57,12 +55,10 @@
               :href="addressLink"
               target="_blank"
             >
-
               <b-icon
                 icon="link"
                 size="is-small"
               />
-
             </a>
             <a
               v-if="addressTwitterLink"
@@ -71,12 +67,10 @@
               :href="addressTwitterLink"
               target="_blank"
             >
-
               <b-icon
                 icon="twitter"
                 size="is-small"
               />
-
             </a>
             <a
               v-if="addressGithubLink"
@@ -113,12 +107,10 @@
               :href="addressEtherscan"
               target="_blank"
             >
-
               <b-icon
                 icon="currency-eth"
                 size="is-small"
               />
-
             </a>
           </div>
         </nav>
@@ -131,9 +123,7 @@
 import makeBlockie from 'ethereum-blockies-base64';
 
 export default {
-  components: {
-
-  },
+  components: {},
 
   props: {
     ensData: {
@@ -222,6 +212,5 @@ export default {
       return null;
     },
   },
-
 };
 </script>
