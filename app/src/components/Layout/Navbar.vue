@@ -3,12 +3,12 @@
   <nav class="navbar">
     <div class="container">
       <div class="navbar-brand">
-        <a
+        <router-link
+          :to="{ name: 'home' }"
           class="navbar-item title"
-          href="../"
         >
           🖼️&nbsp;⚈&nbsp;🍕
-        </a>
+        </router-link>
         <span
           class="navbar-burger burger"
           data-target="navbarMenu"
@@ -29,7 +29,7 @@
           >
             🏠 Home
           </b-navbar-item>
-          <div class="navbar-item has-dropdown is-hoverable">
+          <!-- <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">Account</a>
             <div class="navbar-dropdown">
               <b-navbar-item
@@ -63,10 +63,10 @@
               >
                 🔚 Logout
               </b-navbar-item>
-            </div>
-          </div>
+            </div> -->
         </div>
       </div>
+    </div>
     </div>
   </nav>
   <!-- END NAV -->

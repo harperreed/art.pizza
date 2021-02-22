@@ -2,18 +2,20 @@
   <div class="box">
     <article class="media">
       <div class="media-left">
-        <figure class="image is-64x64">
-          <img
-            v-if="addressAvatar"
-            :src="addressAvatar"
-            alt="Image"
-          >
-          <b-skeleton
-            v-else
-            width="64px"
-            height="64px"
-          />
-        </figure>
+        <router-link :to="{ name: 'Assets', params: {ethRoute:ethAddress}}">
+          <figure class="image is-64x64">
+            <img
+              v-if="addressAvatar"
+              :src="addressAvatar"
+              alt="Image"
+            >
+            <b-skeleton
+              v-else
+              width="64px"
+              height="64px"
+            />
+          </figure>
+        </router-link>
       </div>
       <div class="media-content">
         <div class="content">
@@ -108,7 +110,7 @@
               target="_blank"
             >
               <b-icon
-                icon="currency-eth"
+                icon="open-in-new"
                 size="is-small"
               />
             </a>
@@ -121,27 +123,23 @@
 
 <script>
 import makeBlockie from 'ethereum-blockies-base64';
+import ens from '@/mixins/ens';
 
 export default {
   components: {},
-
+  mixins: [ens],
   props: {
-    ensData: {
-      type: Object,
-      default() {},
-    },
     ethAddress: {
       type: String,
       default: '',
     },
-    ensName: {
-      type: String,
-      default: '',
-    },
-    ethBalance: {
-      type: String,
-      default: '',
-    },
+
+  },
+  data() {
+    return {
+      ensName: undefined,
+      ethBalance: undefined,
+    };
   },
   computed: {
     blockie() {
@@ -211,6 +209,12 @@ export default {
       }
       return null;
     },
+  },
+  async created() {
+    if (!this.ensName) {
+      this.ensName = await this.ensLookup(this.ethAddress);
+    }
+    this.ethBalance = await this.getBalance(this.ethAddress);
   },
 };
 </script>

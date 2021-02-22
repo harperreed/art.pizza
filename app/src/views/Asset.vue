@@ -6,17 +6,35 @@
 
     <div class="card large">
       <div class="card-image">
-        <figure class="image">
-          <img
-            :src="asset.image_url"
-            alt="Image"
-          >
-        </figure>
+        <router-link :to="{ name: 'Asset', params: {contractAddress:asset.asset_contract.address, tokenId:asset.token_id}}">
+          <figure class="image">
+            <img
+              :src="asset.image_url"
+              alt="Image"
+            >
+          </figure>
+        </router-link>
       </div>
       <div class="card-content">
         <div class="media" />
         <div class="content">
           {{ asset.description }}
+          <a
+            :href="asset.external_link"
+            target="_blank"
+          > <b-icon
+            icon="open-in-new"
+            size="is-small"
+          />
+          </a>
+          <a
+            :href="asset.permalink"
+            target="_blank"
+          > <b-icon
+            icon="open-in-new"
+            size="is-small"
+          />
+          </a>
           <div class="background-icon">
             <span class="icon-twitter" />
           </div>
@@ -24,36 +42,46 @@
       </div>
     </div>
 
+    <ContractBox
+      :contract="asset.asset_contract"
+    />
+
     <h1 class="title is-5">
       Owned by:
     </h1>
 
     <AddressBox
-      :ens-data="ensData"
-      :ens-name="ensName"
       :eth-address="ethAddress"
-      :eth-balance="ethBalance"
     />
 
-    <!-- <pre>
-      {{ asset }}
-    </pre> -->
+    <div v-if="asset.creator">
+      <h1 class="title is-5">
+        Created by:
+      </h1>
+
+      <AddressBox
+
+        :eth-address="asset.creator.address"
+      />
+    </div>
   </BaseLayout>
 </template>
 
 <script>
 
+import ContractBox from '@/components/Utils/ContractBox.vue';
 import AddressBox from '@/components/Utils/AddressBox.vue';
 import BaseLayout from '@/components/Layout/BaseLayout.vue';
-import ens from '@/mixins/ens';
+
 import nfts from '@/mixins/nfts';
 
 export default {
   components: {
     BaseLayout,
     AddressBox,
+    ContractBox,
   },
-  mixins: [nfts, ens],
+  mixins: [nfts],
   data() {
     return {
       asset: undefined,

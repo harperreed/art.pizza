@@ -4,10 +4,7 @@
       Assets for <strong>{{ niceName }}</strong>
     </h1>
     <AddressBox
-      :ens-data="ensData"
-      :ens-name="ensName"
       :eth-address="ethAddress"
-      :eth-balance="ethBalance"
     />
     <div v-if="assets">
       <masonry
