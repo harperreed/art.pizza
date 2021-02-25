@@ -5,7 +5,7 @@
 <script>
 
 export default {
-  name: 'App',
+  name: 'ArtDotPizza',
   title: 'welcome',
   components: {
 

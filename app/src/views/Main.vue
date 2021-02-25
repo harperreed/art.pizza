@@ -75,6 +75,7 @@ export default {
     enterAddress() {
       if (this.address) {
         console.log("let's search");
+        this.$router.push({ name: 'Assets', params: { ethRoute: this.address } });
       }
     },
   },
