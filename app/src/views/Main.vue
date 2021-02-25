@@ -3,21 +3,33 @@
     <h1 class="title is-3">
       Hi. Let's look at art!
     </h1>
-
-    <b-field label="Eth address or an ENS domain">
+    <b-field
+      grouped
+      label="Eth address or an ENS domain"
+    >
       <b-input
-        v-model="name"
+        v-model="address"
         placeholder="pizza.eth"
+        expanded
         size="is-large"
         icon="currency-eth"
       />
+      <p class="control">
+        <b-button
+          label="Go"
+          size="is-large"
+          type="is-light"
+          @click="enterAddress"
+        />
+      </p>
     </b-field>
+
     <hr>
-    <h1 class="title is-4">
+    <!-- <h1 class="title is-4">
       Check out these pieces
     </h1>
 
-    <hr>
+    <hr> -->
     <h1 class="title is-3">
       About art.pizza
     </h1>
@@ -53,7 +65,19 @@ export default {
   components: {
     BaseLayout,
   },
+  data() {
+    return {
+      address: '',
+    };
+  },
   title: 'Hi',
+  methods: {
+    enterAddress() {
+      if (this.address) {
+        console.log("let's search");
+      }
+    },
+  },
   // data() {
   //   return {
   //     assets: assets.assets,
