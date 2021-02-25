@@ -40,6 +40,7 @@
 
           {{ asset.created_date | moment("dddd, MMMM Do YYYY") }}
           <a
+            v-if="asset.external_link"
             :href="asset.external_link"
             target="_blank"
           > External Link <b-icon
@@ -48,6 +49,7 @@
           />
           </a>
           <a
+            v-if="asset.permalink"
             :href="asset.permalink"
             target="_blank"
           > Opensea <b-icon
@@ -140,12 +142,7 @@ export default {
     ContractBox,
   },
   mixins: [nfts],
-  data() {
-    return {
-      asset: undefined,
 
-    };
-  },
   computed: {
     edition() {
       const index = this.asset.traits.findIndex((p) => p.trait_type === 'edition number');

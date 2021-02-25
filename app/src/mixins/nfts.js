@@ -3,21 +3,41 @@ const axios = require('axios').default;
 const assetsJson = require('@/assets.json');
 
 export default {
-
+  data() {
+    return {
+      asset: undefined,
+      nameAssets: undefined,
+    };
+  },
   methods: {
     async getAssets() {
       const assetsUrl = `/api/assets/${this.ethAddress}`;
       try {
         const assetsResponse = await axios.get(assetsUrl);
-        this.assets = assetsResponse.data;
+        /* eslint guard-for-in: "error" */
+        const newAssets = [];
+        const ensAssets = [];
+        assetsResponse.data.forEach((asset) => {
+          console.log(asset.asset_contract);
+          if (asset.asset_contract.symbol === 'ENS' || asset.asset_contract.name === '.crypto') {
+            ensAssets.push(asset);
+          } else {
+            newAssets.push(asset);
+          }
+        });
+        if (newAssets.length > 0) {
+          this.assets = newAssets;
+        }
+        if (ensAssets.length > 0) {
+          this.nameAssets = ensAssets;
+        }
       } catch (error) {
-        this.assets = assetsJson.assets;
         console.log(error);
       }
     },
     async getAsset(contractAddress, tokenId) {
       const assetUrl = `/api/asset/${contractAddress}/${tokenId}`;
-      console.log(assetUrl);
+
       try {
         const assetResponse = await axios.get(assetUrl);
         return assetResponse.data;
