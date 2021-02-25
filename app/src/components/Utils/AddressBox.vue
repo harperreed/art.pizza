@@ -102,18 +102,6 @@
                 />
               </span>
             </a>
-            <a
-              v-if="addressEtherscan"
-              class="level-item"
-              aria-label="reply"
-              :href="addressEtherscan"
-              target="_blank"
-            >
-              <b-icon
-                icon="open-in-new"
-                size="is-small"
-              />
-            </a>
           </div>
         </nav>
       </div>
