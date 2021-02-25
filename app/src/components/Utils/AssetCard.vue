@@ -24,16 +24,6 @@
             size="is-small"
           />
         </router-link>
-        <a
-
-          aria-label="reply"
-
-          target="_blank"
-        >
-          <b-icon
-            icon="currency-eth"
-            size="is-small"
-          /></a>
       </div>
     </div>
   </div>

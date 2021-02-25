@@ -21,11 +21,28 @@
       <div class="card-content">
         <div class="media" />
         <div class="content">
-          {{ asset.description }}
+          <div class="field is-grouped is-grouped-multiline is-pulled-right">
+            <div
+              v-for="trait in asset.traits"
+              :key="trait.trait_type"
+              class="control"
+            >
+              <div class="tags has-addons">
+                <span class="tag is-dark">{{ trait.trait_type }}</span>
+                <span class="tag is-info">{{ trait.value }}</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="block">
+            {{ asset.description }}
+          </p>
+
+          {{ asset.created_date | moment("dddd, MMMM Do YYYY") }}
           <a
             :href="asset.external_link"
             target="_blank"
-          > <b-icon
+          > External Link <b-icon
             icon="open-in-new"
             size="is-small"
           />
@@ -33,7 +50,7 @@
           <a
             :href="asset.permalink"
             target="_blank"
-          > <b-icon
+          > Opensea <b-icon
             icon="open-in-new"
             size="is-small"
           />
@@ -60,6 +77,23 @@
       <AddressBox
         :eth-address="ethAddress"
       />
+    </div>
+
+    <div
+      v-if="asset.top_ownerships"
+      class="block"
+    >
+      <h1 class="title is-5">
+        Top Owners:
+      </h1>
+      <div
+        v-for="owner in asset.top_ownerships"
+        :key="owner.owner.address"
+      >
+        <AddressBox
+          :eth-address="owner.owner.address"
+        /> <br>
+      </div>
     </div>
 
     <div
@@ -112,6 +146,21 @@ export default {
 
     };
   },
+  computed: {
+    edition() {
+      const index = this.asset.traits.findIndex((p) => p.trait_type === 'edition number');
+      return this.asset.traits[index];
+    },
+    initialPrice() {
+      const index = this.asset.traits.findIndex((p) => p.trait_type === 'initial price');
+      return this.asset.traits[index];
+    },
+    royalty() {
+      const index = this.asset.traits.findIndex((p) => p.trait_type === 'royalty percentage');
+      return this.asset.traits[index];
+    },
+
+  },
 
   async created() {
     console.log('Asd');
@@ -122,6 +171,7 @@ export default {
     const asset = await this.getAsset(contractAddress, tokenId);
     console.log(asset);
     this.asset = asset;
+    this.asset.collection.payment_tokens = [];
     if (asset.owner.address !== '0x0000000000000000000000000000000000000000') {
       this.ethAddress = asset.owner.address;
     }

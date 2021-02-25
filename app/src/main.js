@@ -9,7 +9,10 @@ import router from '@/router';
 import { store } from '@/store';
 
 import VueMasonry from 'vue-masonry-css';
+import Moment from 'vue-moment';
 import App from './App.vue';
+
+Vue.use(Moment);
 
 Vue.use(VueMasonry);
 Vue.mixin(titleMixin);
