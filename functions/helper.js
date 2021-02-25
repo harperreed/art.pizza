@@ -79,7 +79,7 @@ helper.prototype.isAddress = function (ethAddress) {
  * @returns {object} yay
  */
 helper.prototype.getAssets = async function (ethAddress) {
-  const assetsUrl = `https://api.opensea.io/api/v1/assets?owner=${ethAddress}&order_direction=desc&offset=0&limit=20`;
+  const assetsUrl = `https://api.opensea.io/api/v1/assets?owner=${ethAddress}&order_direction=desc&offset=0&limit=100`;
 
   // Make a request for a user with a given ID
   try {
