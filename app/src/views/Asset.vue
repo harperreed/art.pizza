@@ -3,6 +3,9 @@
     <h1 class="title">
       {{ asset.name }}
     </h1>
+    <!-- <pre>
+      {{ asset }}
+      </pre> -->
 
     <div class="card large">
       <div class="card-image">
@@ -46,15 +49,36 @@
       :contract="asset.asset_contract"
     />
 
-    <h1 class="title is-5">
-      Owned by:
-    </h1>
+    <div
+      v-if="ethAddress"
+      class="block"
+    >
+      <h1 class="title is-5">
+        Owned by:
+      </h1>
 
-    <AddressBox
-      :eth-address="ethAddress"
-    />
+      <AddressBox
+        :eth-address="ethAddress"
+      />
+    </div>
 
-    <div v-if="asset.creator">
+    <div
+      v-if="asset.last_sale"
+      class="block"
+    >
+      <h1 class="title is-5">
+        Last sale by:
+      </h1>
+
+      <AddressBox
+        :eth-address="asset.last_sale.transaction.from_account.address"
+      />
+    </div>
+
+    <div
+      v-if="asset.creator"
+      class="block"
+    >
       <h1 class="title is-5">
         Created by:
       </h1>
@@ -98,7 +122,9 @@ export default {
     const asset = await this.getAsset(contractAddress, tokenId);
     console.log(asset);
     this.asset = asset;
-    this.ethAddress = asset.owner.address;
+    if (asset.owner.address !== '0x0000000000000000000000000000000000000000') {
+      this.ethAddress = asset.owner.address;
+    }
 
     // let ethAddress;
     // if (ethRoute.includes('eth')) {

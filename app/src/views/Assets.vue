@@ -1,29 +1,45 @@
 <template>
   <BaseLayout>
-    <h1 class="title">
-      Assets for <strong>{{ niceName }}</strong>
-    </h1>
-    <AddressBox
-      :eth-address="ethAddress"
-    />
-    <div v-if="assets">
-      <masonry
-        :cols="{default: 3, 1000: 3, 700: 2, 400: 1}"
-        :gutter="{default: '30px', 700: '15px'}"
-      >
-        <div
-          v-for="card in assets"
-          :key="card.id"
+    <div v-if="ethAddress">
+      <h1 class="title">
+        Assets for <strong><span class="has-background-warning-light">{{ niceName }}</span></strong>
+      </h1>
+      <AddressBox
+        :eth-address="ethAddress"
+      />
+      <div v-if="assets">
+        <masonry
+          :cols="{default: 3, 1000: 3, 700: 2, 400: 1}"
+          :gutter="{default: '30px', 700: '15px'}"
         >
-          <AssetCard :asset="card" />
-        </div>
-      </masonry>
+          <div
+            v-for="card in assets"
+            :key="card.id"
+          >
+            <AssetCard :asset="card" />
+          </div>
+        </masonry>
+      </div>
+      <div v-else>
+        <h2 class="is-4 title">
+          Loading assets
+        </h2>
+        <b-skeleton />
+      </div>
     </div>
     <div v-else>
-      <h2 class="is-4 title">
-        Loading assets
-      </h2>
-      <b-skeleton />
+      <h1 class="title is-3">
+        No assets found for <span class="has-background-warning-light">{{ niceName }}</span> !
+      </h1>
+      <h1 class="title is-4">
+        Try again?
+      </h1>
+      <MainSearch class="block" />
+
+      <ExcitingNFTs
+        :num="3"
+        title="Or click on one of these..."
+      />
     </div>
   </BaseLayout>
 </template>
@@ -31,7 +47,10 @@
 <script>
 import BaseLayout from '@/components/Layout/BaseLayout.vue';
 import AssetCard from '@/components/Utils/AssetCard.vue';
+import MainSearch from '@/components/Utils/MainSearch.vue';
 import AddressBox from '@/components/Utils/AddressBox.vue';
+
+import ExcitingNFTs from '@/components/Utils/ExcitingNFTs.vue';
 import ens from '@/mixins/ens';
 import nfts from '@/mixins/nfts';
 
@@ -40,6 +59,8 @@ export default {
     BaseLayout,
     AddressBox,
     AssetCard,
+    MainSearch,
+    ExcitingNFTs,
   },
 
   mixins: [ens, nfts],
@@ -81,7 +102,9 @@ export default {
       this.getAssets(this.ethAddress);
     } else {
       console.log('nope');
-      this.$router.push('/');
+      this.ethAddress = undefined;
+      this.assets = undefined;
+      // this.$router.push('/');
     }
   },
 
