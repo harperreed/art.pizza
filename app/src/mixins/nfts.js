@@ -1,7 +1,5 @@
 const axios = require('axios').default;
 
-const assetsJson = require('@/assets.json');
-
 export default {
   data() {
     return {
