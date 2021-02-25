@@ -58,7 +58,7 @@ export default {
 
   body {
     background: var(--background);
-    min-height: 80vh;
+
     color: var(--textDark);
   }
 
@@ -84,55 +84,4 @@ export default {
     padding: 2rem;
   }
 
-  .left {
-    border-right: 5px solid var(--background);
-  }
-
-  .left .title {
-    font-weight: 800;
-    letter-spacing: -2px;
-  }
-
-  .left .colored {
-    color: var(--brandColor);
-    font-weight: 500;
-    margin-top: 1rem !important;
-    letter-spacing: -1px;
-  }
-
-  .left p {
-    color: var(--textLight);
-    font-size: 1.15rem;
-  }
-
-  .right .title {
-    font-weight: 800;
-    letter-spacing: -1px;
-  }
-
-  .right .description {
-    margin-top: 1rem;
-    margin-bottom: 1rem !important;
-    color: var(--textLight);
-    font-size: 1.15rem;
-  }
-
-  .right small {
-    color: var(--textLight);
-  }
-
-  input {
-    font-size: 1rem;
-  }
-
-  input:focus {
-    border-color: var(--brandColor) !important;
-    box-shadow: 0 0 0 1px var(--brandColor) !important;
-  }
-
-  .fab,
-  .fas {
-    color: var(--textLight);
-    margin-right: 1rem;
-  }
 </style>

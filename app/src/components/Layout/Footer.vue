@@ -4,12 +4,15 @@
     <nav class="level">
       <div class="level-left">
         <div class="level-item">
-          <router-link :to="{ name: 'home' }">
+          <a
+            href="https://twitter.com/harper"
+            target="_blank"
+          >
             <b-icon
               icon="twitter"
               size="is-small"
             />
-          </router-link>
+          </a>
                     &emsp;
           <router-link :to="{ name: 'home' }">
             <span class="icon">
@@ -30,7 +33,7 @@
           class="level-item"
           style="color: var(--textLight)"
         >
-          &copy; Arts, man. All Rights Reserved.
+          Made on a random saturday. Fun, right.
         </small>
       </div>
     </nav>
