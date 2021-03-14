@@ -20,8 +20,8 @@
 <script>
 
 import AssetCard from '@/components/Utils/AssetCard.vue';
-import ens from '@/mixins/ens';
-import nfts from '@/mixins/nfts';
+
+import web3 from '@/mixins/web3';
 
 import excitingNFTs from '@/exciting_nfts.json';
 
@@ -30,7 +30,7 @@ export default {
     AssetCard,
   },
 
-  mixins: [ens, nfts],
+  mixins: [web3],
   props: {
     num: {
       type: Number,

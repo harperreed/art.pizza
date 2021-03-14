@@ -111,11 +111,11 @@
 
 <script>
 import makeBlockie from 'ethereum-blockies-base64';
-import ens from '@/mixins/ens';
+import web3 from '@/mixins/web3';
 
 export default {
   components: {},
-  mixins: [ens],
+  mixins: [web3],
   props: {
     ethAddress: {
       type: String,
@@ -123,12 +123,7 @@ export default {
     },
 
   },
-  data() {
-    return {
-      ensName: undefined,
-      ethBalance: undefined,
-    };
-  },
+
   computed: {
     blockie() {
       if (this.ethAddress) {

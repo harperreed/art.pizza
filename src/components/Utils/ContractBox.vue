@@ -2,7 +2,7 @@
   <div class="box">
     <article class="media">
       <div class="media-left">
-        <router-link :to="{ name: 'Assets', params: {ethRoute:ethAddress}}">
+        <router-link :to="{ name: 'Contract', params: {contractAddress:contract.address}}">
           <figure class="image is-64x64">
             <img
               v-if="addressAvatar"
@@ -41,13 +41,26 @@
           <p>
             {{ contract.description }}
             <br v-if="contract.description">
+            <router-link
+              :to="{ name: 'Contract', params: {contractAddress:contract.address}}"
+              aria-label="reply"
+            >
+              <b-icon
+                icon="open-in-new"
+                size="is-small"
+              />
+              View Contract
+            </router-link>
             <a
               :href="contract.external_link"
               target="_blank"
-            ><b-icon
-              icon="open-in-new"
-              size="is-small"
-            /> Link</a>
+            >
+              <b-icon
+                icon="open-in-new"
+                size="is-small"
+              />
+              Link
+            </a>
           </p>
         </div>
       </div>
@@ -57,11 +70,11 @@
 
 <script>
 import makeBlockie from 'ethereum-blockies-base64';
-import ens from '@/mixins/ens';
+import web3 from '@/mixins/web3';
 
 export default {
   components: {},
-  mixins: [ens],
+  mixins: [web3],
   props: {
     contract: {
       type: Object,

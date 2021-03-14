@@ -7,59 +7,26 @@
       <AddressBox
         :eth-address="ethAddress"
       />
-      <div v-if="assets">
-        <masonry
-          :cols="{default: 3, 1000: 3, 700: 2, 400: 1}"
-          :gutter="{default: '30px', 700: '15px'}"
-        >
-          <div
-            v-for="card in assets"
-            :key="card.id"
-          >
-            <AssetCard :asset="card" />
-          </div>
-        </masonry>
-      </div>
-
-      <div v-if="nameAssets">
-        <h1 class="title is-3">
-          Domains and Names
-        </h1>
-
-        <b-table
-          :data="nameAssets"
-          class="table  is-striped  is-hoverable is-fullwidth"
-        >
-          <b-table-column
-            v-slot="props"
-            label="Type"
-          >
-            {{ props.row.asset_contract.name }}
-          </b-table-column>
-          <b-table-column
-            v-slot="props"
-            label="Name"
-          >
-            <a
-              v-if="props.row.external_link"
-              :href="props.row.external_link"
-              target="_blank"
-            >{{ props.row.name }}</a>
-          </b-table-column>
-          <b-table-column
-            v-slot="props"
-            label="View"
-          >
-            <router-link :to="{ name: 'Asset', params: {contractAddress:props.row.asset_contract.address, tokenId:props.row.token_id}}">
-              More info
-            </router-link>
-          </b-table-column>
-        </b-table>
-      </div>
+      <Assets :assets="assets" />
+      <NameAssets :assets="nameAssets" />
     </div>
     <div v-else>
-      <h1 class="title is-3">
-        No assets found for <span class="has-background-warning-light">{{ niceName }}</span> !
+      <h1
+        v-if="!notFound"
+        class="title is-3"
+      >
+        loading assets for <span class="has-background-warning-light">{{ niceName }}</span> !
+      </h1>
+    </div>
+    <div v-if="notFound">
+      <h1
+
+        class="title is-3"
+      >
+        Nothing found for <span class="has-background-warning-light">{{ niceName }}</span> !
+      </h1>
+      <h1 class="title is-5">
+        Invalid ethereum address or ENS name
       </h1>
       <h1 class="title is-4">
         Try again?
@@ -76,65 +43,72 @@
 
 <script>
 import BaseLayout from '@/components/Layout/BaseLayout.vue';
-import AssetCard from '@/components/Utils/AssetCard.vue';
+
 import MainSearch from '@/components/Utils/MainSearch.vue';
 import AddressBox from '@/components/Utils/AddressBox.vue';
+import Assets from '@/components/Utils/Assets.vue';
+import NameAssets from '@/components/Utils/NameAssets.vue';
 
 import ExcitingNFTs from '@/components/Utils/ExcitingNFTs.vue';
-import ens from '@/mixins/ens';
+import web3 from '@/mixins/web3';
 import nfts from '@/mixins/nfts';
 
 export default {
   components: {
     BaseLayout,
     AddressBox,
-    AssetCard,
+    Assets,
+    NameAssets,
     MainSearch,
     ExcitingNFTs,
   },
 
-  mixins: [ens, nfts],
+  mixins: [web3, nfts],
   data() {
     return {
       assets: undefined,
-
+      ethAddress: undefined,
+      notFound: false,
     };
   },
   computed: {
     niceName() {
+      const { ethRoute } = this.$route.params;
       if (this.ensName) {
         return this.ensName;
       }
       console.log(this.ethAddress);
-      const length = 10;
-      const part1 = this.ethAddress.substring(0, length);
-      const part2 = this.ethAddress.substring(this.ethAddress.length - length, this.ethAddress.length);
-      return `${part1}...${part2}`;
+      if (this.ethAddress) {
+        const length = 10;
+        const part1 = this.ethAddress.substring(0, length);
+        const part2 = this.ethAddress.substring(this.ethAddress.length - length, this.ethAddress.length);
+        return `${part1}...${part2}`;
+      }
+      return ethRoute;
     },
 
   },
 
   async created() {
-    console.log('Asd');
-    console.log(this.$route.params);
     const { ethRoute } = this.$route.params;
-    console.log(ethRoute);
+
     let ethAddress;
     if (ethRoute.includes('eth')) {
       console.log('probably a name');
       this.ensName = ethRoute;
       ethAddress = await this.ensResolve(ethRoute);
+      this.pageTitle = `NFTs for ${this.ensName}`;
     } else {
       ethAddress = ethRoute;
     }
-    if (ethAddress) {
+    if (ethAddress && this.isAddress(ethAddress)) {
       this.ethAddress = ethAddress;
       this.getAssets(this.ethAddress);
     } else {
       console.log('nope');
       this.ethAddress = undefined;
       this.assets = undefined;
-      // this.$router.push('/');
+      this.notFound = true;
     }
   },
 

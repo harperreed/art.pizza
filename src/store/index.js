@@ -7,7 +7,7 @@ import { vuexfireMutations } from 'vuexfire';
 import shared from '@/store/shared';
 import profiles from '@/store/profiles';
 import users from '@/store/users';
-import nfts from '@/store/nfts';
+// import nfts from '@/store/nfts';
 
 Vue.use(Vuex);
 
@@ -34,6 +34,6 @@ export const store = new Vuex.Store({
     profiles,
     shared,
     users,
-    nfts,
+    // nfts,
   },
 });

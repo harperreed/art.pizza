@@ -8,11 +8,21 @@ function getTitle(vm) {
   return title;
 }
 export default {
+  data: () => ({
+    pageTitle: '',
+    site: 'art dot pizza',
+  }),
   created() {
-    const site = 'art dot pizza';
     const title = getTitle(this);
     if (title) {
-      document.title = `${title} · ${site}`;
+      // document.title = `${title} · ${this.site}`;
+      this.pageTitle = `${title} · ${this.site}`;
     }
+  },
+  watch: {
+    pageTitle() {
+      // const title = getTitle(this);
+      document.title = `${this.pageTitle} · ${this.site}`;
+    },
   },
 };

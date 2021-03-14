@@ -6,6 +6,7 @@ import Router from 'vue-router';
 import NotFound from '@/views/NotFound';
 import Main from '@/views/Main';
 import Asset from '@/views/Asset';
+import Contract from '@/views/Contract';
 import Assets from '@/views/Assets';
 
 Vue.use(Router);
@@ -37,6 +38,12 @@ const routes = [
     path: '/contract/:contractAddress/:tokenId',
     name: 'Asset',
     component: Asset,
+    // beforeEnter: AuthGuard,
+  },
+  {
+    path: '/contract/:contractAddress/',
+    name: 'Contract',
+    component: Contract,
     // beforeEnter: AuthGuard,
   },
   {
