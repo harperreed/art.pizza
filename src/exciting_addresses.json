@@ -1,6 +1,4 @@
-[{
-    "address": "0xE5501BC2B0Df6D0D7daAFC18D2ef127D9e612963"
-  },
+[
   {
     "address": "0xc6b0562605d35ee710138402b878ffe6f2e23807"
   },
@@ -8,9 +6,21 @@
     "address": "0x03911fecabd6b4809c88e2e6eb856ec932b2ee3e"
   },
   {
+    "address": "0x2ce780d7c743a57791b835a9d6f998b15bbba5a4"
+  },
+  {
+    "address": "0x2b0D29fFA81fa6Bf35D31db7C3bc11a5913B45ef"
+  },
+  {
     "address": "0xf4b4a58974524e183c275f3c6ea895bc2368e738"
   },
   {
     "address": "0x11e4857bb9993a50c685a79afad4e6f65d518dda"
+  },
+  {
+    "address": "0x1010595F96Ab62b31BfeAc411Ec5f8f60DB5DC23"
+  },
+  {
+    "address": "0xE5501BC2B0Df6D0D7daAFC18D2ef127D9e612963"
   }
 ]

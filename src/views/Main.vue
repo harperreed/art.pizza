@@ -1,15 +1,16 @@
 <template>
   <BaseLayout>
     <h1 class="title is-3">
-      Hi. Let's look at art!
+      Hi. Let's look at some NFTs!
     </h1>
-    <MainSearch />
 
+    <MainSearch />
     <hr>
+
     <ExcitingNFTs />
     <hr>
-    <ExcitingAddresses />
 
+    <ExcitingAddresses />
     <hr>
 
     <About />
