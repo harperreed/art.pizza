@@ -15,7 +15,10 @@
 
         class="card large"
       >
-        <div class="card-image">
+        <div
+          v-if="asset.image_url"
+          class="card-image"
+        >
           <router-link :to="{ name: 'Asset', params: {contractAddress:asset.asset_contract.address, tokenId:asset.token_id}}">
             <figure class="image">
               <img
@@ -26,7 +29,6 @@
           </router-link>
         </div>
         <div class="card-content">
-          <div class="media" />
           <div class="content">
             <div class="field is-grouped is-grouped-multiline is-pulled-right">
               <div
@@ -203,7 +205,7 @@ export default {
     const { contractAddress, tokenId } = this.$route.params;
 
     const asset = await this.getAsset(contractAddress, tokenId);
-
+    console.log(asset);
     this.asset = asset;
     this.asset.collection.payment_tokens = [];
     if (asset.owner.address !== '0x0000000000000000000000000000000000000000') {
