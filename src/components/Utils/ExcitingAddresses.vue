@@ -1,41 +1,58 @@
 <template>
   <div v-if="assets">
     <h1 class="title is-4">
-      Awesome NFTs
+      {{ title }}
     </h1>
-    <masonry
-      :cols="{default: 3, 1000: 3, 700: 2, 400: 1}"
-      :gutter="{default: '30px', 700: '15px'}"
+    <div
+      v-for="address in addresses"
+      :key="address.address"
     >
-      <div
-        v-for="card in assets"
-        :key="card.id"
-      >
-        <AssetCard :asset="card" />
-      </div>
-    </masonry>
+      <AddressBox
+        :eth-address="address.address"
+      />
+      <div class="block" />
+    </div>
   </div>
 </template>
 
 <script>
 
-import AssetCard from '@/components/Utils/AssetCard.vue';
+import AddressBox from '@/components/Utils/AddressBox.vue';
+
 import web3 from '@/mixins/web3';
 
-import assets from '@/assets.json';
+import excitingAddresses from '@/exciting_addresses.json';
 
-console.log(assets);
 export default {
   components: {
-    AssetCard,
+    AddressBox,
   },
 
   mixins: [web3],
+  props: {
+    num: {
+      type: Number,
+      default: 9,
+    },
+    title: {
+      type: String,
+      default: 'Fun Addresses to check out!',
+    },
+  },
   data() {
     return {
-      assets: assets.assets,
-
+      assets: [],
     };
+  },
+  computed: {
+    addresses() {
+      return excitingAddresses;
+    },
+  },
+  async created() {
+    console.log('Asd');
+    console.log(excitingAddresses);
+    // this.assets = await this.getExcitingAssets(excitingNFTs);
   },
 
 };

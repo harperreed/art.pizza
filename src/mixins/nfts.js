@@ -54,6 +54,18 @@ export default {
         return {};
       }
     },
+    async getExcitingAssets(assetList) {
+      const limit = 50;
+      const offset = 0;
+      let assetParams = '';
+      assetList.forEach((asset) => {
+        assetParams = `${assetParams}&asset_contract_addresses=${asset.address}&token_ids=${asset.id}`;
+      });
+
+      const assetsUrl = `https://api.opensea.io/api/v1/assets?order_direction=desc&offset=${offset}&limit=${limit}&${assetParams}`;
+      const assetsResponse = await axios.get(assetsUrl);
+      return assetsResponse.data.assets;
+    },
     async getContract(contractAddress) {
       console.log(contractAddress);
       const contractUrl = `https://api.opensea.io/api/v1/asset_contract/${contractAddress}/`;

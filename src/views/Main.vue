@@ -8,6 +8,9 @@
     <hr>
     <ExcitingNFTs />
     <hr>
+    <ExcitingAddresses />
+
+    <hr>
 
     <About />
   </BaseLayout>
@@ -17,6 +20,7 @@
 import BaseLayout from '@/components/Layout/BaseLayout.vue';
 import MainSearch from '@/components/Utils/MainSearch.vue';
 import ExcitingNFTs from '@/components/Utils/ExcitingNFTs.vue';
+import ExcitingAddresses from '@/components/Utils/ExcitingAddresses.vue';
 import About from '@/components/Utils/About.vue';
 
 // import assets from '@/assets.json';
@@ -26,6 +30,7 @@ export default {
     BaseLayout,
     MainSearch,
     ExcitingNFTs,
+    ExcitingAddresses,
     About,
   },
 

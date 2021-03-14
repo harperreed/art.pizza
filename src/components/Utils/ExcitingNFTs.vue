@@ -3,34 +3,30 @@
     <h1 class="title is-4">
       {{ title }}
     </h1>
-    <masonry
-      :cols="{default: 3, 1000: 3, 700: 2, 400: 1}"
-      :gutter="{default: '30px', 700: '15px'}"
-    >
-      <div
-        v-for="card in assets"
-        :key="card.id"
-      >
-        <AssetCard :asset="card" />
-      </div>
-    </masonry>
+    <Assets
+      v-if="assets"
+      :assets="assets"
+    />
+    <div v-else>
+      loading
+    </div>
   </div>
 </template>
 
 <script>
 
-import AssetCard from '@/components/Utils/AssetCard.vue';
+import Assets from '@/components/Utils/Assets.vue';
 
-import web3 from '@/mixins/web3';
+import nfts from '@/mixins/nfts';
 
 import excitingNFTs from '@/exciting_nfts.json';
 
 export default {
   components: {
-    AssetCard,
+    Assets,
   },
 
-  mixins: [web3],
+  mixins: [nfts],
   props: {
     num: {
       type: Number,
@@ -41,16 +37,28 @@ export default {
       default: 'Awesome NFTs!',
     },
   },
-  computed: {
-    assets() {
-      // eslint-disable-next-line no-plusplus
-      for (let i = excitingNFTs.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [excitingNFTs[i], excitingNFTs[j]] = [excitingNFTs[j], excitingNFTs[i]];
-      }
-      return excitingNFTs.slice(0, this.num);
-    },
+  data() {
+    return {
+      assets: [],
+    };
   },
+  async created() {
+    console.log('Asd');
+    this.assets = await this.getExcitingAssets(excitingNFTs);
+  },
+  // computed: {
+  //   assets() {
+  //     const assets = this.getExcitingAssets(excitingNFTs);
+  //     return assets;
+
+  //     // eslint-disable-next-line no-plusplus
+  //     // for (let i = excitingNFTs.length - 1; i > 0; i--) {
+  //     //   const j = Math.floor(Math.random() * (i + 1));
+  //     //   [excitingNFTs[i], excitingNFTs[j]] = [excitingNFTs[j], excitingNFTs[i]];
+  //     // }
+  //     // return excitingNFTs.slice(0, this.num);
+  //   },
+  // },
 
 };
 </script>
