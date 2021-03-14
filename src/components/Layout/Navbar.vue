@@ -29,6 +29,12 @@
           >
             🏠 Home
           </b-navbar-item>
+          <b-navbar-item
+            tag="a"
+            href="https://artpizza.eth.link"
+          >
+            🌐 IPFS
+          </b-navbar-item>
           <!-- <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">Account</a>
             <div class="navbar-dropdown">
