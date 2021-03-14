@@ -32,6 +32,7 @@
           <b-navbar-item
             tag="a"
             href="https://artpizza.eth.link"
+            target="_blank"
           >
             🌐 IPFS
           </b-navbar-item>
