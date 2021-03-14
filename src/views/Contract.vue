@@ -48,6 +48,14 @@ export default {
     }
     return 'loading asset...';
   },
+  watch: {
+    contract() {
+      if (this.contract) {
+        console.log(this.contract);
+        this.pageTitle = this.contract.name;
+      }
+    },
+  },
 
   async created() {
     console.log(this.$route.params);

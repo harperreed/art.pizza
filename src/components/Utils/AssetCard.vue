@@ -1,6 +1,12 @@
 <template>
-  <div class="card large">
-    <div class="card-image">
+  <div
+    v-if="show"
+    class="card large"
+  >
+    <div
+      v-if="asset.image_url"
+      class="card-image"
+    >
       <router-link :to="{ name: 'Asset', params: {contractAddress:asset.asset_contract.address, tokenId:asset.token_id}}">
         <figure class="image">
           <img
@@ -40,9 +46,14 @@ export default {
       type: Object,
       default() {},
     },
-
   },
   computed: {
+    show() {
+      if (this.asset.name === null) {
+        return false;
+      }
+      return true;
+    },
     description() {
       const length = 50;
 
