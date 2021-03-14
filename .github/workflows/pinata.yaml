@@ -6,7 +6,7 @@ on:
       - main
 jobs:
   build:
-    name: Build NUXT
+    name: Build VUE
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -15,7 +15,7 @@ jobs:
         run: yarn install
 
       - name: Build
-        run: yarn bulid
+        run: yarn build
 
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
