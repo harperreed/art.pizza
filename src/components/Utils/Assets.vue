@@ -1,7 +1,7 @@
 <template>
   <div v-if="assets">
     <masonry
-      :cols="{default: 3, 1000: 3, 700: 2, 400: 1}"
+      :cols="{default: 3, 1000: 3, 800: 2, 700: 1}"
       :gutter="{default: '30px', 700: '15px'}"
     >
       <div
