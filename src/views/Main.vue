@@ -1,8 +1,14 @@
 <template>
   <BaseLayout>
-    <h1 class="title is-3">
-      Hi. Let's look at some NFTs!
-    </h1>
+    <div class="section-heading">
+      <h3 class="title is-2">
+        Art.Pizza
+      </h3>
+      <h4 class="subtitle is-5">
+        Hi. Let's look at some NFTs!
+      </h4>
+    </div>
+    <br>
 
     <MainSearch />
     <hr>
