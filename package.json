@@ -20,6 +20,7 @@
     "vue": "^2.6.11",
     "vue-masonry-css": "^1.0.3",
     "vue-moment": "^4.1.0",
+    "vue-plausible": "^1.1.4",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2",
     "vuex-persistedstate": "^4.0.0-beta.3",

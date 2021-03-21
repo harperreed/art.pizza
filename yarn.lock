@@ -8290,6 +8290,11 @@ pkg-dir@^4.1.0:
   dependencies:
     find-up "^4.0.0"
 
+plausible-tracker@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/plausible-tracker/-/plausible-tracker-0.3.1.tgz#dd4e1f59cafc7bf1b00e30890567287b3f204efd"
+  integrity sha512-oXnVyfTF2gzkfK3iOZCRZEnf8sH4gBASaJhY+clwWW1orIybfQpfbgg4U5Bwj5dW/4iNstM4tx4jMCVUfMCUbg==
+
 pnglib@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/pnglib/-/pnglib-0.0.1.tgz#f9ab6f9c688f4a9d579ad8be28878a716e30c096"
@@ -10606,6 +10611,13 @@ vue-moment@^4.1.0:
   integrity sha512-Gzisqpg82ItlrUyiD9d0Kfru+JorW2o4mQOH06lEDZNgxci0tv/fua1Hl0bo4DozDV2JK1r52Atn/8QVCu8qQw==
   dependencies:
     moment "^2.19.2"
+
+vue-plausible@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/vue-plausible/-/vue-plausible-1.1.4.tgz#c6fc059f081a7b7d7820ad9dcb504d1cf6a3a892"
+  integrity sha512-Br7pAxCrnr4t8X6ByOFeMPiyoJAD1dpUyOyh3pEyy0P7Gkt4A7ps2wvDioNmKw6wuWijaMMwU9TCuDmJm9RdTg==
+  dependencies:
+    plausible-tracker "^0.3.1"
 
 vue-router@^3.5.1:
   version "3.5.1"

@@ -9,15 +9,19 @@ import router from '@/router';
 import { store } from '@/store';
 
 import VueMasonry from 'vue-masonry-css';
+import { VuePlausible } from 'vue-plausible';
 import Moment from 'vue-moment';
 import App from './App.vue';
+
+Vue.use(VuePlausible);
 
 Vue.use(Moment);
 
 Vue.use(VueMasonry);
 Vue.mixin(titleMixin);
 
-Vue.config.productionTip = true;
+Vue.config.productionTip = false;
+Vue.$plausible.enableAutoPageviews();
 
 Vue.use(Buefy);
 
