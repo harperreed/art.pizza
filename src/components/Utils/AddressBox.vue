@@ -170,6 +170,12 @@ export default {
           if (this.ensData['vnd.twitter'].includes('@')) {
             return `${this.ensData['vnd.twitter']}`;
           }
+
+          if (this.ensData['vnd.twitter'].includes('twitter.com')) {
+            const username = this.ensData['vnd.twitter'].replace('twitter.com/', '').replace('https://', '').replace('http://', '');
+            return `@${username}`;
+          }
+
           return `@${this.ensData['vnd.twitter']}`;
         }
       }
