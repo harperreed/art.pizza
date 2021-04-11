@@ -6,6 +6,7 @@ export default {
       asset: undefined,
       nameAssets: undefined,
       contract: undefined,
+      loadingAssets: false,
     };
   },
   methods: {
@@ -13,15 +14,32 @@ export default {
       console.log('assets');
       console.log("Let's get the assets");
       const limit = 50;
-      const offset = 0;
-      let assets = [];
+      let offset = 0;
 
       // at some point we need to iterate through this - or use THEGRAPH
-      const assetsUrl = `https://api.opensea.io/api/v1/assets?limit=${limit}&offset=${offset}&order_direction=desc&owner=${this.ethAddress}`;
-      // eslint-disable-next-line no-await-in-loop
-      const assetResponse = await axios.get(assetsUrl);
+      let done = false;
+      this.loadingAssets = true;
+      let assets = [];
+      while (!done) {
+        const assetsUrl = `https://api.opensea.io/api/v1/assets?limit=${limit}&offset=${offset}&order_direction=desc&owner=${this.ethAddress}`;
 
-      assets = [...assetResponse.data.assets];
+        // eslint-disable-next-line no-await-in-loop
+        const assetResponse = await axios.get(assetsUrl);
+        const assetResponseData = assetResponse.data;
+        if (assets === []) {
+          assets = assetResponseData.assets;
+        } else {
+          assets = [...assets, ...assetResponseData.assets];
+        }
+        console.log(assetResponse.data);
+
+        if (assetResponseData.assets.length === 0) {
+          done = true;
+        } else {
+          console.log("let's get more");
+          offset += limit;
+        }
+      }
 
       const newAssets = [];
       const ensAssets = [];
@@ -38,7 +56,7 @@ export default {
       if (ensAssets.length > 0) {
         this.nameAssets = ensAssets;
       }
-
+      this.loadingAssets = false;
       return assets;
     },
     async getAsset(contractAddress, tokenId) {
