@@ -1,6 +1,5 @@
 <template>
   <BaseLayout>
-    {{ }}
     <div v-if="ethAddress">
       <h1 class="title">
         Assets for <strong><span class="has-background-warning-light">{{ niceName }}</span></strong>
