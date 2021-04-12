@@ -1,7 +1,9 @@
 const ethers = require('ethers');
 
-const provider = new ethers.providers.CloudflareProvider();
-
+// const provider = new ethers.providers.CloudflareProvider();
+const provider = new ethers.providers.InfuraProvider('homestead', {
+  projectId: '926d09b2b9ce4354847fe9a485d19bfd',
+});
 export default {
   data() {
     return {

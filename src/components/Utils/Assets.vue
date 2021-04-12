@@ -13,13 +13,6 @@
         </div>
       </masonry>
     </div>
-    <div v-else>
-      <h1 class="is-4 title">
-        Loading Assets
-      </h1>
-
-      <b-progress size="is-large" />
-    </div>
   </div>
 </template>
 

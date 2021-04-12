@@ -1,5 +1,6 @@
 <template>
   <BaseLayout>
+    {{ }}
     <div v-if="ethAddress">
       <h1 class="title">
         Assets for <strong><span class="has-background-warning-light">{{ niceName }}</span></strong>
@@ -10,13 +11,14 @@
       <Assets :assets="assets" />
       <NameAssets :assets="nameAssets" />
     </div>
-    <div v-else>
+    <div v-if="loadingAssets">
       <h1
         v-if="!notFound"
         class="title is-3"
       >
         loading assets for <span class="has-background-warning-light">{{ niceName }}</span> !
       </h1>
+      <b-progress size="is-large" />
     </div>
     <div v-if="notFound">
       <h1
@@ -85,6 +87,12 @@ export default {
         return `${part1}...${part2}`;
       }
       return ethRoute;
+    },
+    loadingAssets() {
+      if (this.assets === undefined && this.nameAssets === undefined) {
+        return true;
+      }
+      return false;
     },
 
   },
