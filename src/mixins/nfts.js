@@ -44,7 +44,11 @@ export default {
       const newAssets = [];
       const ensAssets = [];
       assets.forEach((asset) => {
-        if (asset.asset_contract.symbol === 'ENS' || asset.asset_contract.name === '.crypto') {
+        console.log(asset.asset_contract);
+        if (asset.asset_contract.symbol === 'ENS'
+          || asset.asset_contract.name === '.crypto'
+          || asset.asset_contract.symbol === 'NAME'
+          || asset.asset_contract.name === 'DCL Registrar') {
           ensAssets.push(asset);
         } else {
           newAssets.push(asset);
