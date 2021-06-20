@@ -10,12 +10,6 @@
     >
       <b-table-column
         v-slot="props"
-        label="Type"
-      >
-        {{ props.row.asset_contract.name }}
-      </b-table-column>
-      <b-table-column
-        v-slot="props"
         label="Name"
       >
         <a
@@ -23,6 +17,12 @@
           :href="props.row.external_link"
           target="_blank"
         >{{ props.row.name }}</a>
+      </b-table-column>
+      <b-table-column
+        v-slot="props"
+        label="Type"
+      >
+        {{ props.row.asset_contract.name }}
       </b-table-column>
       <b-table-column
         v-slot="props"
