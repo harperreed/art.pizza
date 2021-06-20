@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import makeBlockie from 'ethereum-blockies-base64';
+
 import web3 from '@/mixins/web3';
 
 export default {
@@ -93,20 +93,8 @@ export default {
     ethAddress() {
       return this.contract.address;
     },
-    blockie() {
-      if (this.contract.address) {
-        const icon = makeBlockie(this.contract.address);
-        return icon;
-      }
-      return 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-    },
     addressAvatar() {
-      if (this.contract) {
-        if ('image_url' in this.contract) {
-          return this.contract.image_url;
-        }
-      }
-      return this.blockie;
+      return `https://effigy.im/a/${this.ethAddress}.svg`;
     },
     addressEtherscan() {
       if (this.contract) {

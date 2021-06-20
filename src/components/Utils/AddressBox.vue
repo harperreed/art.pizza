@@ -110,7 +110,6 @@
 </template>
 
 <script>
-import makeBlockie from 'ethereum-blockies-base64';
 import web3 from '@/mixins/web3';
 
 export default {
@@ -125,20 +124,8 @@ export default {
   },
 
   computed: {
-    blockie() {
-      if (this.ethAddress) {
-        const icon = makeBlockie(this.ethAddress);
-        return icon;
-      }
-      return 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-    },
     addressAvatar() {
-      if (this.ensData) {
-        if ('avatar' in this.ensData) {
-          return this.ensData.avatar;
-        }
-      }
-      return this.blockie;
+      return `https://effigy.im/a/${this.ethAddress}.svg`;
     },
     addressEmail() {
       if (this.ensData) {
