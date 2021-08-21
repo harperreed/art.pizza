@@ -1,7 +1,7 @@
 <template>
   <BaseLayout>
     <div v-if="ethAddress">
-      <h1 class="text-3xl my-4">
+      <h1 class="text-3xl mb-4">
         Assets for <strong><span class="has-background-warning-light">{{ niceName }}</span></strong>
       </h1>
       <AddressBox
