@@ -1,5 +1,76 @@
 <template>
-  <div class="box">
+  <div>
+    <div class="flex  items-center p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 mb-4">
+      <div class="flex flex-col shadow ">
+        <router-link :to="{ name: 'Assets', params: {ethRoute:ethAddress}}">
+          <img
+            :alt="ethAddress"
+            class="w-24 h-auto rounded-md"
+            :src="addressAvatar"
+          >
+        </router-link>
+      </div>
+      <div
+        id="body"
+        class="flex flex-col ml-5"
+      >
+        <h4
+          id="name"
+          class="text-lg font-semibold "
+        >
+          <span v-if="ensName">
+            <router-link :to="{ name: 'Contract', params: {contractAddress:contract.address}}">
+              <strong v-if="ensName">{{ ensName }}</strong>
+            </router-link>
+            <small
+              v-if="addressTwitterName"
+              class="px-2"
+            >{{ addressTwitterName }}</small>
+          </span>
+        </h4>
+        <span
+
+          class="text-sm"
+        >
+          <router-link :to="{ name: 'Contract', params: {contractAddress:contract.address}}">{{ ethAddress }}</router-link>
+        </span>
+
+        <span
+          v-if="ethBalance"
+          class="text-sm"
+        > {{ ethBalance }} Ether </span>
+        <div class="flex sm:ml-auto sm:mt-2 mt-2 w-full justify-start ">
+          <a
+            v-if="contract.external_link"
+            :href="contract.external_link"
+
+            target="_blank"
+
+            class="text-xs text-gray-500 mr-4"
+          >
+            External Link</a>
+          <a
+            v-if="addressEtherscan"
+            aria-label="etherscan"
+            :href="addressEtherscan"
+            target="_blank"
+            class="text-xs text-gray-500 mr-4"
+          >
+            Etherscan</a>
+          <!-- <a
+            v-if="addressOpensea"
+            aria-label="opensea"
+            :href="addressOpensea"
+            target="_blank"
+            class="text-xs text-gray-500 mr-4"
+          >
+            OpenSea</a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="box">
     <article class="media">
       <div class="media-left">
         <router-link :to="{ name: 'Contract', params: {contractAddress:contract.address}}">
@@ -65,7 +136,7 @@
         </div>
       </div>
     </article>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -99,6 +170,12 @@ export default {
     addressEtherscan() {
       if (this.contract) {
         return `https://etherscan.io/address/${this.contract.address}`;
+      }
+      return null;
+    },
+    addressOpensea() {
+      if (this.ethAddress) {
+        return `https://opensea.io/${this.contract.address}`;
       }
       return null;
     },

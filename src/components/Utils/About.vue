@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="title is-3">
+    <h1 class="text-3xl my-4">
       About art.pizza
     </h1>
     <p class="block">

@@ -1,14 +1,13 @@
 <template>
   <div
     v-if="show"
-    class="card large"
+    class="border"
   >
     <div
       v-if="asset.image_url"
-      class="card-image"
     >
       <router-link :to="{ name: 'Asset', params: {contractAddress:asset.asset_contract.address, tokenId:asset.token_id}}">
-        <figure class="image">
+        <figure>
           <img
             :src="asset.image_url"
             alt="Image"
@@ -16,8 +15,8 @@
         </figure>
       </router-link>
     </div>
-    <div class="card-content">
-      <div class="content">
+    <div>
+      <div>
         {{ description }}
         <router-link
           :to="{ name: 'Asset', params: {contractAddress:asset.asset_contract.address, tokenId:asset.token_id}}"
@@ -25,10 +24,7 @@
 
           target="_blank"
         >
-          <b-icon
-            icon="currency-eth"
-            size="is-small"
-          />
+          Etherscan
         </router-link>
       </div>
     </div>

@@ -1,9 +1,9 @@
 <template>
-  <div class="container lg:container-lg border mx-auto">
+  <div class="container lg:container-lg mx-auto">
     <Navbar />
 
     <!-- Portfolio -->
-    <div class="border">
+    <div class="p-5 py-4">
       <slot />
     </div>
 
