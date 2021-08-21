@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex  items-center p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 mb-4">
+    <div class="shadow-xl flex  items-center p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 mb-4">
       <div class="flex flex-col shadow ">
         <router-link :to="{ name: 'Assets', params: {ethRoute:ethAddress}}">
           <img

@@ -1,7 +1,7 @@
 <template>
   <BaseLayout>
     <div v-if="ethAddress">
-      <h1 class="title">
+      <h1 class="text-3xl my-4">
         Assets for <strong><span class="has-background-warning-light">{{ niceName }}</span></strong>
       </h1>
       <AddressBox
@@ -13,7 +13,7 @@
     <div v-if="loadingAssets">
       <h1
         v-if="!notFound"
-        class="title is-3"
+        class="text-3xl my-4"
       >
         loading assets for <span class="has-background-warning-light">{{ niceName }}</span> !
       </h1>
@@ -22,14 +22,14 @@
     <div v-if="notFound">
       <h1
 
-        class="title is-3"
+        class="text-3xl my-4"
       >
         Nothing found for <span class="has-background-warning-light">{{ niceName }}</span> !
       </h1>
-      <h1 class="title is-5">
+      <h1 class="text-3xl my-4">
         Invalid ethereum address or ENS name
       </h1>
-      <h1 class="title is-4">
+      <h1 class="text-3xl my-4">
         Try again?
       </h1>
       <MainSearch class="block" />
