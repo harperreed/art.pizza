@@ -1,13 +1,11 @@
 <template>
-  <div>
+  <div class="container lg:container-lg border mx-auto">
     <Navbar />
 
     <!-- Portfolio -->
-    <section class="section">
-      <div class="container">
-        <slot />
-      </div>
-    </section>
+    <div class="border">
+      <slot />
+    </div>
 
     <Footer />
   </div>
