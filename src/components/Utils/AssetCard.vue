@@ -1,36 +1,29 @@
 <template>
   <div
     v-if="show"
-    class="border my-2 sm:m-4 shadow-xl rounded-xl p-2 "
+    class="border my-2 shadow-xl rounded-xl p-2 mb-6"
   >
-    <div>
-      <!-- <pre>{{ asset }}</pre> -->
-      <p
-        class="font-semibold mb-2 "
+    <p
+      class="font-semibold mb-2 "
+    >
+      {{ name }}
+    </p>
+    <router-link :to="{ name: 'Asset', params: {contractAddress:asset.asset_contract.address, tokenId:asset.token_id}}">
+      <img
+        v-if="asset.image_url"
+        :src="asset.image_url"
+        class="w-auto h-auto mx-auto"
+        width="100%"
       >
-        {{ name }}
-      </p>
-      <router-link :to="{ name: 'Asset', params: {contractAddress:asset.asset_contract.address, tokenId:asset.token_id}}">
-        <figure class="border bg-gray-200 ">
-          <img
-            v-if="asset.image_url"
-            :src="asset.image_url"
-            alt="Image"
-            class="w-auto h-auto  "
-          >
-          <div
-            v-else
-            class="w-100 h-44 animate-pulse"
-          />
-        </figure>
-      </router-link>
-    </div>
+      <div
+        v-else
+        class="w-100 h-44 animate-pulse"
+      />
+    </router-link>
 
-    <div>
-      <p class="sm:hidden">
-        {{ description }}
-      </p>
-    </div>
+    <p>
+      {{ description }}
+    </p>
   </div>
 </template>
 
@@ -51,17 +44,23 @@ export default {
       return true;
     },
     name() {
+      let name = 'No Name';
+      const length = 20;
       if ('name' in this.asset) {
         if (this.asset.name == null) {
-          return this.asset.asset_contract.name;
+          name = this.asset.asset_contract.name;
         }
-        return this.asset.name;
+        name = this.asset.name;
       }
-      return 'No Name';
+
+      if (name.length > length) {
+        name = `${name.substring(0, length)}...`;
+      }
+      return name;
     },
     description() {
       const length = 50;
-      let description = 'No Description';
+      let description = null;
 
       if ('description' in this.asset) {
         if (this.asset.description == null) {

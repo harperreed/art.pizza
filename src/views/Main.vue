@@ -11,13 +11,13 @@
     <br>
 
     <MainSearch />
-    <hr>
+    <hr class="mx-4">
 
     <ExcitingNFTs />
-    <hr>
+    <hr class="mx-4">
 
     <ExcitingAddresses />
-    <hr>
+    <hr class="mx-4">
 
     <About />
   </BaseLayout>
