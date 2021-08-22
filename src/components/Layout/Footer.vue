@@ -1,5 +1,5 @@
 <template>
-  <footer class="text-gray-600 body-font bg-gray-100">
+  <footer class="text-gray-600 body-font ">
     <div class="container px-4 py-4 mx-auto flex items-center sm:flex-row flex-col max-w-screen-xl">
       <div class="block">
         <router-link
