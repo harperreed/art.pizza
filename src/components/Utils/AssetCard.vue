@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="show"
-    class="border my-2 shadow-xl rounded-xl p-2 mb-6"
+    class="border my-2 shadow-xl rounded-lg p-2 mb-6"
   >
     <p
       class="font-semibold mb-2 "
@@ -66,9 +66,11 @@ export default {
         if (this.asset.description == null) {
           description = this.asset.asset_contract.description;
         }
-
-        if (description.length > length) {
-          description = `${description.substring(0, length)}...`;
+        description = this.asset.description;
+        if (description !== null) {
+          if (description.length > length) {
+            description = `${description.substring(0, length)}...`;
+          }
         }
         return description;
       }

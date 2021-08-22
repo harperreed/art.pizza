@@ -2,8 +2,7 @@
   <BaseLayout>
     <div v-if="asset">
       <h1
-
-        class="title"
+        class="text-3xl my-4"
       >
         {{ asset.name }}
       </h1>
@@ -15,64 +14,69 @@
 
         class="card large"
       >
-        <div
+        <img
           v-if="asset.image_url"
-          class="card-image"
+          :src="asset.image_url"
+          class="w-full border rounded"
         >
-          <router-link :to="{ name: 'Asset', params: {contractAddress:asset.asset_contract.address, tokenId:asset.token_id}}">
-            <figure class="image">
-              <img
-                :src="asset.image_url"
-                alt="Image"
-              >
-            </figure>
-          </router-link>
-        </div>
-        <div class="card-content">
-          <div class="content">
-            <div class="field is-grouped is-grouped-multiline is-pulled-right">
-              <div
-                v-for="trait in asset.traits"
-                :key="trait.trait_type"
-                class="control"
-              >
-                <div class="tags has-addons">
-                  <span class="tag is-dark">{{ trait.trait_type }}</span>
-                  <span class="tag is-info">{{ trait.value }}</span>
-                </div>
-              </div>
-            </div>
+        <TraitBox :traits="asset.traits" />
 
-            <p class="block">
-              {{ asset.description }}
-            </p>
+        <h1
+          v-if="asset.description"
+          class="subhead"
+        >
+          Description:
+        </h1>
+        <p
+          v-if="asset.description"
+          class="block  py-2"
+        >
+          {{ asset.description }}
+        </p>
 
-            {{ asset.created_date | moment("dddd, MMMM Do YYYY") }}
-            <a
-              v-if="asset.external_link"
-              :href="asset.external_link"
-              target="_blank"
-            > External Link <b-icon
-              icon="open-in-new"
-              size="is-small"
-            />
-            </a>
-            <a
-              v-if="asset.permalink"
-              :href="asset.permalink"
-              target="_blank"
-            > Opensea <b-icon
-              icon="open-in-new"
-              size="is-small"
-            />
-            </a>
-            <div class="background-icon">
-              <span class="icon-twitter" />
-            </div>
-          </div>
+        <h1
+          v-if="asset.asset_contract.description"
+          class="subhead"
+        >
+          Contract Description:
+        </h1>
+        <p v-if="asset.asset_contract.description">
+          {{ asset.asset_contract.description }}
+        </p>
+
+        <h1
+          v-if="asset.asset_contract.description"
+          class="subhead"
+        >
+          Stats:
+        </h1>
+        <StatsBox
+          v-if="asset"
+          :stats="asset.collection.stats"
+        />
+
+        <h1 class="subhead">
+          Links:
+        </h1>
+        <div class="flex sm:ml-auto  w-full justify-start ">
+          <a
+            v-if="asset.asset_contract.external_link"
+            :href="asset.asset_contract.external_link"
+            target="_blank"
+            class=" text-gray-500 mr-4"
+          > External Link</a>
+          <a
+            v-if="asset.permalink"
+            :href="asset.permalink"
+            target="_blank"
+            class=" text-gray-500 mr-4"
+          > Opensea</a>
         </div>
       </div>
 
+      <h1 class="subhead">
+        Contract:
+      </h1>
       <ContractBox
         v-if="asset"
         :contract="asset.asset_contract"
@@ -80,9 +84,8 @@
 
       <div
         v-if="ethAddress"
-        class="block"
       >
-        <h1 class="title is-5">
+        <h1 class="subhead">
           Owned by:
         </h1>
 
@@ -93,9 +96,8 @@
 
       <div
         v-if="asset.top_ownerships"
-        class="block"
       >
-        <h1 class="title is-5">
+        <h1 class="subhead">
           Top Owners:
         </h1>
         <div
@@ -104,15 +106,14 @@
         >
           <AddressBox
             :eth-address="owner.owner.address"
-          /> <br>
+          />
         </div>
       </div>
 
       <div
         v-if="asset.last_sale"
-        class="block"
       >
-        <h1 class="title is-5">
+        <h1 class="subhead">
           Last sale by:
         </h1>
 
@@ -125,7 +126,7 @@
         v-if="asset.creator"
         class="block"
       >
-        <h1 class="title is-5">
+        <h1 class="subhead">
           Created by:
         </h1>
 
@@ -135,31 +136,6 @@
         />
       </div>
     </div>
-    <div v-else>
-      <h1>Loading</h1>
-      <div
-
-        class="card large"
-      >
-        <div class="card-image">
-          <figure class="image">
-            <b-skeleton
-              is-centered
-              width="100%"
-              height="200px"
-            />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="media" />
-          <div class="content">
-            <p class="block">
-              <b-skeleton active />
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
   </BaseLayout>
 </template>
 
@@ -167,6 +143,8 @@
 
 import ContractBox from '@/components/Utils/ContractBox.vue';
 import AddressBox from '@/components/Utils/AddressBox.vue';
+import StatsBox from '@/components/Utils/StatsBox.vue';
+import TraitBox from '@/components/Utils/TraitBox.vue';
 import BaseLayout from '@/components/Layout/BaseLayout.vue';
 
 import nfts from '@/mixins/nfts';
@@ -176,6 +154,8 @@ export default {
     BaseLayout,
     AddressBox,
     ContractBox,
+    StatsBox,
+    TraitBox,
   },
   mixins: [nfts],
 
@@ -220,5 +200,7 @@ export default {
 </script>
 
 <style>
-
+ .subhead{
+   @apply text-xl my-2 font-semibold;
+ }
 </style>

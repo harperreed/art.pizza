@@ -2,7 +2,7 @@
   <BaseLayout>
     <div v-if="ethAddress">
       <h1 class="text-3xl mb-4">
-        Assets for <strong><span class="has-background-warning-light">{{ niceName }}</span></strong>
+        Assets for <strong><span class="bg-yellow-100">{{ niceName }}</span></strong>
       </h1>
       <AddressBox
         :eth-address="ethAddress"
@@ -10,26 +10,28 @@
       <Assets :assets="assets" />
       <NameAssets :assets="nameAssets" />
     </div>
-    <div v-if="loadingAssets">
+    <div
+      v-if="loadingAssets"
+    >
       <h1
         v-if="!notFound"
-        class="text-3xl my-4"
+        class="text-3xl my-4 animate-pulse"
       >
-        loading assets for <span class="has-background-warning-light">{{ niceName }}</span> !
+        loading assets for <span class="bg-yellow-100">{{ niceName }}</span> !
       </h1>
-      <b-progress size="is-large" />
+      <Loader />
     </div>
     <div v-if="notFound">
       <h1
 
         class="text-3xl my-4"
       >
-        Nothing found for <span class="has-background-warning-light">{{ niceName }}</span> !
+        Nothing found for <span class="bg-yellow-100">{{ niceName }}</span> !
       </h1>
-      <h1 class="text-3xl my-4">
+      <h1 class="text-2xl my-4">
         Invalid ethereum address or ENS name
       </h1>
-      <h1 class="text-3xl my-4">
+      <h1 class="text-2xl my-4">
         Try again?
       </h1>
       <MainSearch class="block" />
@@ -49,6 +51,7 @@ import MainSearch from '@/components/Utils/MainSearch.vue';
 import AddressBox from '@/components/Utils/AddressBox.vue';
 import Assets from '@/components/Utils/Assets.vue';
 import NameAssets from '@/components/Utils/NameAssets.vue';
+import Loader from '@/components/Utils/Loader.vue';
 
 import ExcitingNFTs from '@/components/Utils/ExcitingNFTs.vue';
 import web3 from '@/mixins/web3';
@@ -62,6 +65,7 @@ export default {
     NameAssets,
     MainSearch,
     ExcitingNFTs,
+    Loader,
   },
 
   mixins: [web3, nfts],
@@ -128,19 +132,3 @@ export default {
   },
 };
 </script>
-
-<style>
-/* Card start*/
-.card {
-
-  margin-bottom: 30px;
-}
-
-.card.large {
-  border-radius: 5px;
-}
-
-.title.no-padding {
-  margin-bottom: 0 !important;
-}
-</style>

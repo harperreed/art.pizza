@@ -11,8 +11,12 @@
         {{ contract }}
       </pre> -->
     </div>
-    <div v-else>
-      loading contract
+    <div
+      v-else
+      class="animate-pulse"
+    >
+      Loading contract...
+      <Loader />
     </div>
   </BaseLayout>
 </template>
@@ -21,6 +25,7 @@
 import ContractBox from '@/components/Utils/ContractBox.vue';
 import BaseLayout from '@/components/Layout/BaseLayout.vue';
 import Assets from '@/components/Utils/Assets.vue';
+import Loader from '@/components/Utils/Loader.vue';
 import nfts from '@/mixins/nfts';
 
 export default {
@@ -28,6 +33,7 @@ export default {
     BaseLayout,
     ContractBox,
     Assets,
+    Loader,
 
   },
   mixins: [nfts],

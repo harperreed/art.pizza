@@ -8,7 +8,7 @@
         🖼️&nbsp;.&nbsp;🍕
       </router-link>
 
-      <span class="text-gray-500 text-lg md:visible invisible">A simple way to view NFTs</span>
+      <span class="text-gray-500 text-lg md:visible invisible ml-4">A simple way to view NFTs</span>
     </div>
     <div class=" flex-grow flex items-center w-auto  block lg:hidden  justify-end">
       <button

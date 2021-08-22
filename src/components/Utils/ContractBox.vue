@@ -1,8 +1,11 @@
 <template>
   <div>
+    <!-- <pre>
+    {{ contract }}
+    </pre> -->
     <div class="flex  items-center p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 mb-4">
       <div class="flex flex-col shadow ">
-        <router-link :to="{ name: 'Assets', params: {ethRoute:ethAddress}}">
+        <router-link :to="{ name: 'Contract', params: {contractAddress:contract.address}}">
           <img
             :alt="ethAddress"
             class="w-24 h-auto rounded-md"
@@ -18,15 +21,7 @@
           id="name"
           class="text-lg font-semibold "
         >
-          <span v-if="ensName">
-            <router-link :to="{ name: 'Contract', params: {contractAddress:contract.address}}">
-              <strong v-if="ensName">{{ ensName }}</strong>
-            </router-link>
-            <small
-              v-if="addressTwitterName"
-              class="px-2"
-            >{{ addressTwitterName }}</small>
-          </span>
+          {{ contract.name }}
         </h4>
         <span
 
@@ -57,14 +52,14 @@
             class="text-xs text-gray-500 mr-4"
           >
             Etherscan</a>
-          <!-- <a
-            v-if="addressOpensea"
+          <a
+            v-if="openseaLink"
             aria-label="opensea"
-            :href="addressOpensea"
+            :href="openseaLink"
             target="_blank"
             class="text-xs text-gray-500 mr-4"
           >
-            OpenSea</a> -->
+            {{ openseaLink }} s</a>
         </div>
       </div>
     </div>
@@ -173,9 +168,9 @@ export default {
       }
       return null;
     },
-    addressOpensea() {
-      if (this.ethAddress) {
-        return `https://opensea.io/${this.contract.address}`;
+    openseaLink() {
+      if ('collection' in this.contract) {
+        return `${this.contract.collection.permalink}`;
       }
       return null;
     },

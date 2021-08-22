@@ -1,5 +1,5 @@
 <template>
-  <div class="container lg:container-lg mx-auto">
+  <div class="container max-w-screen-lg mx-auto">
     <Navbar />
 
     <!-- Portfolio -->

@@ -1,23 +1,20 @@
 <template>
   <BaseLayout>
-    <div class="section-heading">
-      <h3 class="title is-2">
+    <div>
+      <h3 class="text-3xl mb-4">
         Art.Pizza
       </h3>
-      <h4 class="subtitle is-5">
+      <h3 class="text-2xl mb-4">
         Hi. Let's look at some NFTs!
-      </h4>
+      </h3>
     </div>
     <br>
 
     <MainSearch />
-    <hr class="mx-4">
 
     <ExcitingNFTs />
-    <hr class="mx-4">
 
     <ExcitingAddresses />
-    <hr class="mx-4">
 
     <About />
   </BaseLayout>
