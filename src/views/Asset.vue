@@ -1,77 +1,72 @@
 <template>
   <BaseLayout>
     <div v-if="asset">
-      <h1
-        class="text-3xl my-4"
-      >
+      <h1 class="text-3xl my-4">
         {{ asset.name }}
       </h1>
       <!-- <pre>
       {{ asset }}
       </pre> -->
 
-      <div
+      <AssetMedia :asset="asset" />
+      <TraitBox :traits="asset.traits" />
 
-        class="card large"
+      <h1
+        v-if="asset.description"
+        class="subhead"
       >
-        <img
-          v-if="asset.image_url"
-          :src="asset.image_url"
-          class="w-full border rounded"
-        >
-        <TraitBox :traits="asset.traits" />
+        Description:
+      </h1>
+      <p
+        v-if="asset.description"
+        class="block py-2"
+      >
+        {{ asset.description }}
+      </p>
 
-        <h1
-          v-if="asset.description"
-          class="subhead"
-        >
-          Description:
-        </h1>
-        <p
-          v-if="asset.description"
-          class="block  py-2"
-        >
-          {{ asset.description }}
-        </p>
+      <h1
+        v-if="asset.asset_contract.description"
+        class="subhead"
+      >
+        Contract Description:
+      </h1>
+      <p v-if="asset.asset_contract.description">
+        {{ asset.asset_contract.description }}
+      </p>
 
-        <h1
-          v-if="asset.asset_contract.description"
-          class="subhead"
-        >
-          Contract Description:
-        </h1>
-        <p v-if="asset.asset_contract.description">
-          {{ asset.asset_contract.description }}
-        </p>
+      <h1
+        v-if="asset.asset_contract.description"
+        class="subhead"
+      >
+        Stats:
+      </h1>
+      <StatsBox
+        v-if="asset"
+        :stats="asset.collection.stats"
+      />
 
-        <h1
-          v-if="asset.asset_contract.description"
-          class="subhead"
-        >
-          Stats:
-        </h1>
-        <StatsBox
-          v-if="asset"
-          :stats="asset.collection.stats"
-        />
-
-        <h1 class="subhead">
-          Links:
-        </h1>
-        <div class="flex sm:ml-auto  w-full justify-start ">
-          <a
-            v-if="asset.asset_contract.external_link"
-            :href="asset.asset_contract.external_link"
-            target="_blank"
-            class=" text-gray-500 mr-4"
-          > External Link</a>
-          <a
-            v-if="asset.permalink"
-            :href="asset.permalink"
-            target="_blank"
-            class=" text-gray-500 mr-4"
-          > Opensea</a>
-        </div>
+      <h1 class="subhead">
+        Links:
+      </h1>
+      <div class="flex sm:ml-auto  w-full justify-start ">
+        <a
+          v-if="asset.asset_contract.external_link"
+          :href="asset.asset_contract.external_link"
+          target="_blank"
+          class=" text-gray-500 mr-4"
+        > External Link</a>
+        <a
+          v-if="asset.permalink"
+          :href="asset.permalink"
+          target="_blank"
+          class=" text-gray-500 mr-4"
+        > Opensea</a>
+        <a
+          v-if="etherscanLink"
+          :href="etherscanLink"
+          target="_blank"
+          class=" text-gray-500 mr-4"
+        > Etherscan</a>
       </div>
 
       <h1 class="subhead">
@@ -145,6 +140,7 @@ import ContractBox from '@/components/Utils/ContractBox.vue';
 import AddressBox from '@/components/Utils/AddressBox.vue';
 import StatsBox from '@/components/Utils/StatsBox.vue';
 import TraitBox from '@/components/Utils/TraitBox.vue';
+import AssetMedia from '@/components/Utils/AssetMedia.vue';
 import BaseLayout from '@/components/Layout/BaseLayout.vue';
 
 import nfts from '@/mixins/nfts';
@@ -156,6 +152,7 @@ export default {
     ContractBox,
     StatsBox,
     TraitBox,
+    AssetMedia,
   },
   mixins: [nfts],
 
@@ -171,6 +168,11 @@ export default {
     royalty() {
       const index = this.asset.traits.findIndex((p) => p.trait_type === 'royalty percentage');
       return this.asset.traits[index];
+    },
+    etherscanLink() {
+      console.log('yeaa');
+      console.log('e', this.asset);
+      return `https://etherscan.io/token/${this.asset.asset_contract.address}?a=${this.asset.token_id}`;
     },
 
   },

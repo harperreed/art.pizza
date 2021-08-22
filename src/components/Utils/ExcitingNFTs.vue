@@ -43,8 +43,22 @@ export default {
     };
   },
   async created() {
-    console.log('Asd');
-    this.assets = await this.getExcitingAssets(excitingNFTs);
+    console.log(excitingNFTs);
+    let currentIndex = excitingNFTs.length; let
+      randomIndex;
+
+    // While there remain elements to shuffle...
+    while (currentIndex !== 0) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      [excitingNFTs[currentIndex], excitingNFTs[randomIndex]] = [
+        excitingNFTs[randomIndex], excitingNFTs[currentIndex]];
+    }
+
+    this.assets = await this.getExcitingAssets(excitingNFTs.slice(0, 10));
   },
   // computed: {
   //   assets() {

@@ -5,7 +5,7 @@
         Art.Pizza
       </h3>
       <h3 class="text-2xl mb-4">
-        Hi. Let's look at some NFTs!
+        A simple way to view NFTs, Contracts, and Wallets
       </h3>
     </div>
     <br>

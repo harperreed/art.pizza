@@ -4,8 +4,8 @@
       Domains and Names
     </h1>
 
-    <table class="table-auto  w-full">
-      <thead class="bg-gray-200 align-right">
+    <table class="table-auto  w-full ">
+      <thead class=" align-right ">
         <tr>
           <th class="px-6 py-3 text-left text-xs  text-gray-500 uppercase tracking-wider">
             Name

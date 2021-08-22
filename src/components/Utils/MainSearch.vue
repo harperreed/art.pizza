@@ -1,5 +1,6 @@
 <template>
   <form @submit.prevent="enterAddress">
+    <span class="m-2 text-md text-gray-600 ">Search for a wallet address or ENS domain</span>
     <div class="bg-white flex items-center border shadow-lg rounded-lg">
       <input
         id="search"
