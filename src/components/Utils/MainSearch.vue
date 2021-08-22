@@ -1,26 +1,32 @@
 <template>
   <form @submit.prevent="enterAddress">
-    <b-field
-      grouped
-      label="Eth address or an ENS domain"
-    >
-      <b-input
+    <span class="m-2 text-md text-gray-600 ">Search for a wallet address or ENS domain</span>
+    <div class="bg-white flex items-center border shadow-lg rounded-lg">
+      <input
+        id="search"
         v-model="address"
+        class="rounded-l-full w-full py-4 px-6 text-lg text-gray-700 leading-tight focus:outline-none"
+        type="text"
         placeholder="pizza.eth"
-        expanded
-        size="is-large"
-        icon="currency-eth"
-      />
-      <p class="control">
-        <b-button
-          label="Go"
-          size="is-large"
-          type="is-light"
+      >
 
+      <div class="p-4">
+        <button
+          class="bg-blue-500 text-white  p-2 hover:bg-blue-400 focus:outline-none rounded items-center justify-center"
           @click="enterAddress"
-        />
-      </p>
-    </b-field>
+        >
+          Search
+        </button>
+      </div>
+    </div>
+
+    <p class="control">
+      <button
+        label="Go"
+        size="is-large"
+        type="is-light"
+      />
+    </p>
   </form>
 </template>
 

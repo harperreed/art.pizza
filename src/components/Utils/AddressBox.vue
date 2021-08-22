@@ -1,111 +1,64 @@
 <template>
-  <div class="box">
-    <article class="media">
-      <div class="media-left">
+  <div>
+    <div class="shadow-xl flex  items-center p-4 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 mb-6">
+      <div class="flex flex-col shadow ">
         <router-link :to="{ name: 'Assets', params: {ethRoute:ethAddress}}">
-          <figure class="image is-64x64">
-            <img
-              v-if="addressAvatar"
-              :src="addressAvatar"
-              alt="Image"
-            >
-            <b-skeleton
-              v-else
-              width="64px"
-              height="64px"
-            />
-          </figure>
+          <img
+            :alt="ethAddress"
+            class="w-24 h-auto rounded-md"
+            :src="addressAvatar"
+          >
         </router-link>
       </div>
-      <div class="media-content">
-        <div class="content">
-          <p>
-            <strong v-if="ensName">{{ ensName }}</strong> <small v-if="addressTwitterName">{{ addressTwitterName }}</small>
-            <br v-if="ensName">
-            <small>
-              <a
-                v-if="addressEtherscan"
-                aria-label="reply"
-                :href="addressEtherscan"
-                target="_blank"
-              >
-                <b-icon
-                  icon="currency-eth"
-                  size="is-small"
-                /></a>
-              {{ ethAddress }}
-            </small>
-            <br>
-            <span v-if="ethBalance"> {{ ethBalance }} Ether </span>
-
-            <b-skeleton
-              v-else
-              width="20%"
-              :animated="true"
-            />
-          </p>
-        </div>
-        <nav
-          v-if="ensName"
-          class="level is-mobile"
+      <div
+        id="body"
+        class="flex flex-col ml-5"
+      >
+        <h4
+          id="name"
+          class="text-lg font-semibold "
         >
-          <div class="level-left">
-            <a
-              v-if="addressLink"
-              class="level-item"
-              aria-label="reply"
-              :href="addressLink"
-              target="_blank"
-            >
-              <b-icon
-                icon="link"
-                size="is-small"
-              />
-            </a>
-            <a
-              v-if="addressTwitterLink"
-              class="level-item"
-              aria-label="reply"
-              :href="addressTwitterLink"
-              target="_blank"
-            >
-              <b-icon
-                icon="twitter"
-                size="is-small"
-              />
-            </a>
-            <a
-              v-if="addressGithubLink"
-              class="level-item"
-              aria-label="retweet"
-              :href="addressGithubLink"
-              target="_blank"
-            >
-              <span class="icon is-small">
-                <b-icon
-                  icon="github"
-                  size="is-small"
-                />
-              </span>
-            </a>
-            <a
-              v-if="addressEmail"
-              class="level-item"
-              aria-label="like"
-              :href="addressEmail"
-              target="_blank"
-            >
-              <span class="icon is-small">
-                <b-icon
-                  icon="email"
-                  size="is-small"
-                />
-              </span>
-            </a>
-          </div>
-        </nav>
+          <span v-if="ensName">
+            <router-link :to="{ name: 'Assets', params: {ethRoute:ethAddress}}">
+              <strong v-if="ensName">{{ ensName }}</strong>
+            </router-link>
+            <small
+              v-if="addressTwitterName"
+              class="px-2"
+            >{{ addressTwitterName }}</small>
+          </span>
+        </h4>
+        <span
+
+          class="text-sm"
+        >
+          <router-link :to="{ name: 'Assets', params: {ethRoute:ethAddress}}">{{ ethAddress }}</router-link>
+        </span>
+
+        <span
+          v-if="ethBalance"
+          class="text-sm"
+        > {{ ethBalance }} Ether </span>
+        <div class="flex sm:ml-auto sm:mt-2 mt-2 w-full justify-start ">
+          <a
+            v-if="addressEtherscan"
+            aria-label="etherscan"
+            :href="addressEtherscan"
+            target="_blank"
+            class="text-xs text-gray-500 mr-4"
+          >
+            Etherscan</a>
+          <a
+            v-if="addressOpensea"
+            aria-label="opensea"
+            :href="addressOpensea"
+            target="_blank"
+            class="text-xs text-gray-500 mr-4"
+          >
+            OpenSea</a>
+        </div>
       </div>
-    </article>
+    </div>
   </div>
 </template>
 
@@ -182,6 +135,12 @@ export default {
     addressEtherscan() {
       if (this.ethAddress) {
         return `https://etherscan.io/address/${this.ethAddress}`;
+      }
+      return null;
+    },
+    addressOpensea() {
+      if (this.ethAddress) {
+        return `https://opensea.io/${this.ethAddress}`;
       }
       return null;
     },

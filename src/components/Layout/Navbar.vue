@@ -1,33 +1,55 @@
 <template>
-  <div class="container">
-    <b-navbar>
-      <template #brand>
-        <b-navbar-item
-          tag="router-link"
-          class="navbar-item title"
-          :to="{ name: 'home' }"
-        >
-          🖼️&nbsp;⚈&nbsp;🍕
-        </b-navbar-item>
-      </template>
+  <nav class="container mx-auto flex flex-wrap p-5 py-4 md:flex-row items-center max-w-screen-xl">
+    <div class="  flex-grow flex items-center w-auto  block  ">
+      <router-link
+        class="text-3xl flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+        :to="{ name: 'home' }"
+      >
+        🖼️&nbsp;.&nbsp;🍕
+      </router-link>
 
-      <template #end>
-        <b-navbar-item
-          tag="router-link"
-          :to="{ name: 'home' }"
+      <span class="text-gray-500 text-lg md:visible invisible ml-4">A simple way to view NFTs</span>
+    </div>
+    <div class=" flex-grow flex items-center w-auto  block lg:hidden  justify-end">
+      <button
+        id="nav-toggle"
+        class="flex items-center px-3 py-2 border rounded text-grey border-grey-dark hover:text-black hover:border-black"
+      >
+        <svg
+          class="fill-current h-3 w-3"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          🏠 Home
-        </b-navbar-item>
-        <b-navbar-item
-          tag="a"
-          href="https://artpizza.eth.link"
-          target="_blank"
-        >
-          🌐 IPFS
-        </b-navbar-item>
-      </template>
-    </b-navbar>
-  </div>
+          <title>Menu</title>
+          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0"
+    >
+      <ul class="list-reset lg:flex justify-end flex-1 items-center md:mr-auto md:ml-4 md:py-1 md:pl-4  ">
+        <li>
+          <router-link
+            class="inline-block py-2 px-2 no-underline hover:text-blue-900 "
+            :to="{ name: 'home' }"
+          >
+            🏠 Home
+          </router-link>
+        </li>
+
+        <li>
+          <a
+            href="https://artpizza.eth.link"
+            class="inline-block py-2 px-2 no-underline hover:text-blue-900 "
+            target="_blank"
+          >
+            🌐 IPFS
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </template>
 
 <script>

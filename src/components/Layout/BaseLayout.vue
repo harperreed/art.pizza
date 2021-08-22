@@ -1,13 +1,11 @@
 <template>
-  <div>
+  <div class="container max-w-screen-lg mx-auto">
     <Navbar />
 
     <!-- Portfolio -->
-    <section class="section">
-      <div class="container">
-        <slot />
-      </div>
-    </section>
+    <div class="p-5 py-4">
+      <slot />
+    </div>
 
     <Footer />
   </div>

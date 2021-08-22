@@ -1,6 +1,6 @@
 <template>
   <div v-if="assets">
-    <h1 class="title is-4">
+    <h1 class="text-3xl my-4">
       {{ title }}
     </h1>
     <div
@@ -10,7 +10,6 @@
       <AddressBox
         :eth-address="address.address"
       />
-      <div class="block" />
     </div>
   </div>
 </template>
