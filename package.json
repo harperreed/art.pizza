@@ -13,13 +13,9 @@
     "core-js": "^3.6.5",
     "ethers": "^5.0.31",
     "firebase": "^8.2.7",
-    "secure-ls": "^1.2.6",
     "vue": "^2.6.11",
-    "vue-moment": "^4.1.0",
     "vue-plausible": "^1.1.4",
     "vue-router": "^3.5.1",
-    "vuex": "^3.6.2",
-    "vuex-persistedstate": "^4.0.0-beta.3",
     "vuexfire": "^3.2.5"
   },
   "devDependencies": {
