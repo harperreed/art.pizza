@@ -5,13 +5,11 @@ import titleMixin from '@/mixins/title';
 import router from '@/router';
 
 import { VuePlausible } from 'vue-plausible';
-import Moment from 'vue-moment';
+
 import App from './App.vue';
 import './index.css';
 
 Vue.use(VuePlausible);
-
-Vue.use(Moment);
 
 Vue.mixin(titleMixin);
 
