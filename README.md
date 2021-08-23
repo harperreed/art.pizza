@@ -1,4 +1,10 @@
-# app
+# Art.pizza
+
+A simple way to browse NFTs, wallets and contracts
+
+
+
+----
 
 ## Project setup
 ```
