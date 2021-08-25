@@ -9,10 +9,12 @@
       This is a very simple app using some web3 components and the opensea api.
     </p>
     <p class="block py-4">
-      If you have ideas on how to make this better or worse (lol) send me a note on twitter (<a
-        href="https://twitter.com/harper"
+      Feel free to add a feature, fix something and what not on <a href="https://github.com/harperreed/art.pizza">github</a>.
+
+      If you have ideas on how to make this better or worse (lol) add an issues <a
+        href="https://github.com/harperreed/art.pizza/issues"
         target="_blank"
-      >@harper</a>).
+      >here</a>.
     </p>
     <p class="block py-4">
       <strong>Yay!</strong> <br>

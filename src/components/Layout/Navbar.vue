@@ -47,6 +47,15 @@
             🌐 IPFS
           </a>
         </li>
+        <li>
+          <a
+            href="https://github.com/harperreed/art.pizza"
+            class="inline-block py-2 px-2 no-underline hover:text-blue-900 "
+            target="_blank"
+          >
+            💿 Github
+          </a>
+        </li>
       </ul>
     </div>
   </nav>
