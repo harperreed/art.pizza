@@ -8,21 +8,21 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@ensdomains/ensjs": "^2.0.0",
+    "@ensdomains/ensjs": "^2.0.1",
     "axios": "^0.21.1",
-    "core-js": "^3.6.5",
-    "ethers": "^5.0.31",
-    "firebase": "^8.2.7",
-    "vue": "^2.6.11",
-    "vue-plausible": "^1.1.4",
-    "vue-router": "^3.5.1",
+    "core-js": "^3.16.3",
+    "ethers": "^5.4.5",
+    "firebase": "^9.0.0",
+    "vue": "^2.6.14",
+    "vue-plausible": "^1.2.1",
+    "vue-router": "^3.5.2",
     "vuexfire": "^3.2.5"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/eslint-config-airbnb": "^5.1.0",
+    "@vue/cli-plugin-babel": "~4.5.13",
+    "@vue/cli-plugin-eslint": "~4.5.13",
+    "@vue/cli-service": "~4.5.13",
+    "@vue/eslint-config-airbnb": "^5.3.0",
     "autoprefixer": "^9",
     "babel-eslint": "^10.1.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
@@ -31,9 +31,9 @@
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-vue": "^7.0.1",
-    "postcss": "^7",
+    "postcss": "^8",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {
     "root": true,
