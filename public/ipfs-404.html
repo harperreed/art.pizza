@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+  </head>
+  <body>
+      <strong>Redirecting...</strong>
+      <script>
+        const url = new URL(window.location.href);
+        console.log(url.pathname);
+        console.log(url.origin);
+        const newUrl = url.origin + "/#" +url.pathname;
+        console.log(newUrl);
+        window.location.replace(newUrl);
+      </script>
+
+  </body>
+</html>
