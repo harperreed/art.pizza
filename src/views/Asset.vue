@@ -56,6 +56,12 @@
           class=" text-gray-500 mr-4"
         > External Link</a>
         <a
+          v-if="raribleLink"
+          :href="raribleLink"
+          target="_blank"
+          class=" text-gray-500 mr-4"
+        > Rarible</a>
+        <a
           v-if="asset.permalink"
           :href="asset.permalink"
           target="_blank"
@@ -169,9 +175,10 @@ export default {
       const index = this.asset.traits.findIndex((p) => p.trait_type === 'royalty percentage');
       return this.asset.traits[index];
     },
+    raribleLink() {
+      return `https://rarible.com/token/${this.asset.asset_contract.address}:${this.asset.token_id}?tab=details`;
+    },
     etherscanLink() {
-      console.log('yeaa');
-      console.log('e', this.asset);
       return `https://etherscan.io/token/${this.asset.asset_contract.address}?a=${this.asset.token_id}`;
     },
 

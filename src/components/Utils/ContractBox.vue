@@ -28,12 +28,14 @@
           class="text-sm"
         >
           <router-link :to="{ name: 'Contract', params: {contractAddress:contract.address}}">{{ ethAddress }}</router-link>
+          <CopyPasteButton :value="contract.address" />
         </span>
 
         <span
           v-if="ethBalance"
           class="text-sm"
         > {{ ethBalance }} Ether </span>
+
         <div class="flex sm:ml-auto sm:mt-2 mt-2 w-full justify-start ">
           <a
             v-if="contract.external_link"
@@ -53,13 +55,21 @@
           >
             Etherscan</a>
           <a
+            v-if="raribleLink"
+            aria-label="rarible"
+            :href="raribleLink"
+            target="_blank"
+            class="text-xs text-gray-500 mr-4"
+          >
+            Rarible</a>
+          <a
             v-if="openseaLink"
             aria-label="opensea"
             :href="openseaLink"
             target="_blank"
             class="text-xs text-gray-500 mr-4"
           >
-            {{ openseaLink }} s</a>
+            Opensea</a>
         </div>
       </div>
     </div>
@@ -138,8 +148,12 @@
 
 import web3 from '@/mixins/web3';
 
+import CopyPasteButton from '@/components/Utils/CopyPasteButton.vue';
+
 export default {
-  components: {},
+  components: {
+    CopyPasteButton,
+  },
   mixins: [web3],
   props: {
     contract: {
@@ -168,9 +182,17 @@ export default {
       }
       return null;
     },
+    raribleLink() {
+      if (this.contract) {
+        return `https://rarible.com/collection/${this.contract.address}?tabFilter[items][sort]=cheapest`;
+      }
+      return null;
+    },
     openseaLink() {
       if ('collection' in this.contract) {
-        return `${this.contract.collection.permalink}`;
+        if ('permalink' in this.contract.collection) {
+          return `${this.contract.collection.permalink}`;
+        }
       }
       return null;
     },
@@ -179,5 +201,6 @@ export default {
   async created() {
     this.ethBalance = await this.getBalance(this.contract.payout_address);
   },
+
 };
 </script>

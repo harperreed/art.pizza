@@ -33,6 +33,7 @@
           class="text-sm"
         >
           <router-link :to="{ name: 'Assets', params: {ethRoute:ethAddress}}">{{ ethAddress }}</router-link>
+          <CopyPasteButton :value="ethAddress" />
         </span>
 
         <span
@@ -64,9 +65,12 @@
 
 <script>
 import web3 from '@/mixins/web3';
+import CopyPasteButton from '@/components/Utils/CopyPasteButton.vue';
 
 export default {
-  components: {},
+  components: {
+    CopyPasteButton,
+  },
   mixins: [web3],
   props: {
     ethAddress: {
