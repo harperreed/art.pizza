@@ -2,7 +2,7 @@
   <BaseLayout>
     <div v-if="ethAddress">
       <h1 class="text-3xl mb-4">
-        Assets for <strong><span class="bg-yellow-100">{{ niceName }}</span></strong>
+        Assets for <strong><span class="bg-yellow-100 dark:bg-gray-200 dark:text-black px-2">{{ niceName }}</span></strong>
       </h1>
       <AddressBox
         :eth-address="ethAddress"

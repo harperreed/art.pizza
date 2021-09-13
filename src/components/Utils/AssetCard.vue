@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="show"
-    class="border my-2 shadow-xl rounded-lg p-2 mb-6"
+    class="border dark:border-gray-600 my-2 shadow-xl rounded-lg p-2 mb-6"
   >
     <p
       class="font-semibold mb-2 "

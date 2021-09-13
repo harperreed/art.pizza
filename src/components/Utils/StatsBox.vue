@@ -80,7 +80,7 @@ export default {
 }
 
 .bottom{
-  @apply text-xs mx-auto bg-gray-200   w-auto py-4 text-center
+  @apply text-xs mx-auto bg-gray-200  dark:bg-gray-600 w-auto py-4 text-center
 }
 
 </style>

@@ -2,13 +2,13 @@
   <nav class="container mx-auto flex flex-wrap p-5 py-4 md:flex-row items-center max-w-screen-xl">
     <div class="  flex-grow flex items-center w-auto  block  ">
       <router-link
-        class="text-3xl flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+        class="text-3xl flex title-font font-medium items-center text-gray-900 dark:text-gray-100 mb-4 md:mb-0"
         :to="{ name: 'home' }"
       >
         🖼️&nbsp;.&nbsp;🍕
       </router-link>
 
-      <span class="text-gray-500 text-lg md:visible invisible ml-4">A simple way to view NFTs</span>
+      <span class="text-gray-500 dark:text-gray-200 text-lg md:visible invisible ml-4">A simple way to view NFTs</span>
     </div>
     <div class=" flex-grow flex items-center w-auto  block lg:hidden  justify-end">
       <button

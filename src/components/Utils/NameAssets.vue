@@ -22,7 +22,7 @@
         <tr
           v-for="(asset,i) in assets"
           :key="i"
-          class="hover:bg-gray-100 border-b border-t"
+          class="hover:bg-gray-100 border-b border-t dark:hover:bg-gray-300 dark:hover:text-gray-900"
         >
           <td class="px-6 py-4 whitespace-nowrap">
             {{ asset.name }}

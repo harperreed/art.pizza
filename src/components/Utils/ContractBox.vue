@@ -3,7 +3,7 @@
     <!-- <pre>
     {{ contract }}
     </pre> -->
-    <div class="flex  items-center p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 mb-4">
+    <div class="flex dark:border-gray-600 items-center p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 mb-4">
       <div class="flex flex-col shadow ">
         <router-link :to="{ name: 'Contract', params: {contractAddress:contract.address}}">
           <img

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white flex space-x-2 p-5 rounded-full justify-center items-center animate-pulse"
+    class="bg-white dark:bg-black flex space-x-2 p-5 rounded-full justify-center items-center animate-pulse"
   >
     <div
       class="circle blue-circle"

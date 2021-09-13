@@ -1,5 +1,5 @@
 <template>
-  <div class="container max-w-screen-lg mx-auto">
+  <div class="container max-w-screen-lg mx-auto dark:text-white dark:bg-black">
     <Navbar />
 
     <!-- Portfolio -->
@@ -37,4 +37,8 @@ export default {
 </script>
 <style>
 
+body{
+  @apply bg-white dark:bg-black;
+
+}
 </style>

@@ -1,11 +1,11 @@
 <template>
   <form @submit.prevent="enterAddress">
-    <span class="m-2 text-md text-gray-600 ">Search for a wallet address or ENS domain</span>
-    <div class="bg-white flex items-center border shadow-lg rounded-lg">
+    <span class="m-2 text-md text-gray-600 dark:text-gray-100">Search for a wallet address or ENS domain</span>
+    <div class="bg-white dark:bg-gray-700 flex items-center border dark:border-gray-600 shadow-lg rounded-lg">
       <input
         id="search"
         v-model="address"
-        class="rounded-l-full w-full py-4 px-6 text-lg text-gray-700 leading-tight focus:outline-none"
+        class="rounded-l-full w-full py-4 px-6 text-lg dark:bg-gray-700 dark:text-gray-100 text-gray-700 leading-tight focus:outline-none"
         type="text"
         placeholder="pizza.eth"
       >
