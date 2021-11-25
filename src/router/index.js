@@ -1,13 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-// import AuthGuard from '@/router/auth-guard';
-
-import NotFound from '@/views/NotFound';
-import Main from '@/views/Main';
-import Asset from '@/views/Asset';
-import Contract from '@/views/Contract';
-import Assets from '@/views/Assets';
+import NotFound from '@/views/NotFound.vue';
+import Main from '@/views/Main.vue';
+import Asset from '@/views/Asset.vue';
+import Contract from '@/views/Contract.vue';
+import Assets from '@/views/Assets.vue';
 
 Vue.use(Router);
 
@@ -54,7 +52,7 @@ const routes = [
 ];
 
 const router = new Router({
-  base: process.env.BASE_URL,
+
   mode: 'hash',
   routes,
 

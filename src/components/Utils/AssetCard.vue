@@ -52,9 +52,11 @@ export default {
         }
         name = this.asset.name;
       }
-
-      if (name.length > length) {
-        name = `${name.substring(0, length)}...`;
+      console.log(name);
+      if (name) {
+        if (name.length > length) {
+          name = `${name.substring(0, length)}...`;
+        }
       }
       return name;
     },
