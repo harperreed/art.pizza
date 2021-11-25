@@ -30,6 +30,7 @@ import About from '@/components/Utils/About.vue';
 // import assets from '@/assets.json';
 
 export default {
+  name: 'MainView',
   components: {
     BaseLayout,
     MainSearch,

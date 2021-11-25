@@ -29,6 +29,7 @@ import Loader from '@/components/Utils/Loader.vue';
 import nfts from '@/mixins/nfts';
 
 export default {
+  name: 'ContractView',
   components: {
     BaseLayout,
     ContractBox,

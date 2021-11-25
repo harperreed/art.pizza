@@ -24,7 +24,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'import/no-unresolved': 'off',
     'no-param-reassign': 'off',
-    // 'import/extensions': ['error', 'never', { js: 'never', vue: 'never' }],
+    'import/extensions': ['error', 'never', { js: 'never', vue: 'never' }],
   },
   settings: {
     'import/resolver': {
