@@ -3,17 +3,17 @@ import { createVuePlugin } from 'vite-plugin-vue2';
 import path from 'path';
 
 export default defineConfig({
-  plugins: [ createVuePlugin() ],
+  plugins: [createVuePlugin()],
   server: {
-    port: 8080
+    port: 8080,
   },
   resolve: {
     alias: [
       {
         find: '@',
-        replacement: path.resolve(__dirname, 'src')
-      }
-    ]
+        replacement: path.resolve(__dirname, 'src'),
+      },
+    ],
   },
-  build: {}
+  build: {},
 });

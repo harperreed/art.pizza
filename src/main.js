@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-import { VuePlausible } from 'vue-plausible';
+// import { VuePlausible } from 'vue-plausible';
 import VueClipboard from 'vue-clipboard2';
 import titleMixin from '@/mixins/title';
 
@@ -10,12 +10,12 @@ import App from './App.vue';
 import './index.css';
 
 Vue.use(VueClipboard);
-Vue.use(VuePlausible);
+// Vue.use(VuePlausible);
 
 Vue.mixin(titleMixin);
 
-Vue.config.productionTip = false;
-Vue.$plausible.enableAutoPageviews();
+// Vue.config.productionTip = false;
+// Vue.$plausible.enableAutoPageviews();
 
 new Vue({
   render: (h) => h(App),
