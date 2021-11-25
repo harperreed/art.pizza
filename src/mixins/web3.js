@@ -1,4 +1,4 @@
-const ethers = require('ethers');
+import { ethers } from 'ethers';
 
 // const provider = new ethers.providers.CloudflareProvider();
 const provider = new ethers.providers.InfuraProvider('homestead', {
