@@ -1,13 +1,12 @@
 import Vue from 'vue';
+import { VuePlausible } from 'vue-plausible';
+import VueClipboard from 'vue-clipboard2';
 
 import titleMixin from '@/mixins/title';
 
 import router from '@/router';
 
-import { VuePlausible } from 'vue-plausible';
-import VueClipboard from 'vue-clipboard2';
-
-import App from './App.vue';
+import App from './App';
 import './index.css';
 
 Vue.use(VueClipboard);
