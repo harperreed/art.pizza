@@ -1,9 +1,12 @@
 import { ethers } from 'ethers';
 
 // const provider = new ethers.providers.CloudflareProvider();
-const provider = new ethers.providers.InfuraProvider('homestead', {
-  projectId: '926d09b2b9ce4354847fe9a485d19bfd',
-});
+// const provider = new ethers.providers.InfuraProvider('homestead', {
+//   projectId: '926d09b2b9ce4354847fe9a485d19bfd',
+// });
+
+const provider = new ethers.providers.AlchemyProvider('homestead', '1EvNrDwcMX5bZpV-0HT35gHuQo6HMbya');
+
 export default {
   data() {
     return {
