@@ -14,9 +14,6 @@ export default {
       },
     };
   },
-  mounted() {
-    console.log(this.openseaRequestConfig);
-  },
   methods: {
     async getAssets() {
       console.log('assets');
