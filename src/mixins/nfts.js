@@ -7,7 +7,15 @@ export default {
       nameAssets: undefined,
       contract: undefined,
       loadingAssets: false,
+      openseaRequestConfig: {
+        headers: {
+          'X-API-KEY': import.meta.env.VITE_OPENSEA_APIKEY,
+        },
+      },
     };
+  },
+  mounted() {
+    console.log(this.openseaRequestConfig);
   },
   methods: {
     async getAssets() {
@@ -24,7 +32,7 @@ export default {
         const assetsUrl = `https://api.opensea.io/api/v1/assets?limit=${limit}&offset=${offset}&order_direction=desc&owner=${this.ethAddress}`;
 
         // eslint-disable-next-line no-await-in-loop
-        const assetResponse = await axios.get(assetsUrl);
+        const assetResponse = await axios.get(assetsUrl, this.openseaRequestConfig);
         const assetResponseData = assetResponse.data;
         if (assets === []) {
           assets = assetResponseData.assets;
@@ -69,7 +77,7 @@ export default {
 
       // Make a request for a user with a given ID
       try {
-        const response = await axios.get(assetUrl);
+        const response = await axios.get(assetUrl, this.openseaRequestConfig);
 
         return response.data; // response;
       } catch (error) {
@@ -85,7 +93,7 @@ export default {
       });
 
       const assetsUrl = `https://api.opensea.io/api/v1/assets?order_direction=desc&offset=${offset}&limit=${limit}&${assetParams}`;
-      const assetsResponse = await axios.get(assetsUrl);
+      const assetsResponse = await axios.get(assetsUrl, this.openseaRequestConfig);
       return assetsResponse.data.assets;
     },
     async getContract(contractAddress) {
@@ -99,7 +107,7 @@ export default {
         const offset = 0;
         const assetsUrl = `https://api.opensea.io/api/v1/assets?limit=${limit}&offset=${offset}&order_direction=desc&asset_contract_address=${contractAddress}`;
         // eslint-disable-next-line no-await-in-loop
-        const assetsResponse = await axios.get(assetsUrl);
+        const assetsResponse = await axios.get(assetsUrl, this.openseaRequestConfig);
         console.log(assetsResponse.data);
 
         const contract = contractResponse.data;
